@@ -669,23 +669,23 @@ function renderTable() {
   }
   noRes.style.display = 'none';
 
-  tbody.innerHTML = data.map(m => {
-    const nameHtml = m.hsId
-      ? `<a href="${BASE}${m.hsId}" target="_blank" rel="noopener">${m.customer}</a>`
+  tbody.innerHTML = data.map(function(m) {
+    var nameHtml = m.hsId
+      ? '<a href="' + BASE + m.hsId + '" target="_blank" rel="noopener">' + m.customer + '</a>'
       : m.customer;
-    return `<tr data-rep="${m.rep}" data-rebate="${m.rebate}">
-      <td>
-        <div class="td-customer">${nameHtml}${getRebadge(m.rebate)}</div>
-        <div class="td-location">${m.location}</div>
-      </td>
-      <td class="td-rep">${m.rep}</td>
-      <td class="td-date">${m.date}</td>
-      <td class="td-duration">${m.duration}</td>
-      <td>${getRebadge(m.rebate)}</td>
-      <td><span class="status-badge ${getStatusClass(m.status)}">${m.statusLabel}</span></td>
-      <td class="td-next">${m.next}</td>
-    </tr>
-  `).join('');
+    return '<tr data-rep="' + m.rep + '" data-rebate="' + m.rebate + '">'
+      + '<td>'
+      + '<div class="td-customer">' + nameHtml + getRebadge(m.rebate) + '</div>'
+      + '<div class="td-location">' + m.location + '</div>'
+      + '</td>'
+      + '<td class="td-rep">' + m.rep + '</td>'
+      + '<td class="td-date">' + m.date + '</td>'
+      + '<td class="td-duration">' + m.duration + '</td>'
+      + '<td>' + getRebadge(m.rebate) + '</td>'
+      + '<td><span class="status-badge ' + getStatusClass(m.status) + '">' + m.statusLabel + '</span></td>'
+      + '<td class="td-next">' + m.next + '</td>'
+      + '</tr>';
+  }).join('');
 }
 
 function filterMeetings(f, btn) {
