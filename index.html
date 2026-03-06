@@ -3,714 +3,1233 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Haven Energy — Sales Week Mar 2–6, 2026</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<title>Call Intelligence — Week of Mar 2–6, 2026</title>
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap');
+
   :root {
-    --bg: #0a0c0f;
-    --surface: #111418;
-    --surface2: #161b22;
-    --border: #1e2329;
-    --border2: #2d343e;
-    --text: #e8eaed;
-    --muted: #6b7280;
-    --dim: #9ca3af;
-    --orange: #f97316;
-    --blue: #3b82f6;
-    --green: #10b981;
-    --yellow: #f59e0b;
-    --red: #ef4444;
-    --purple: #a855f7;
+    --bg: #0d0f14;
+    --surface: #13161e;
+    --surface2: #1a1e28;
+    --border: #252a38;
+    --text: #e2e6f0;
+    --muted: #6b7494;
+    --accent: #4f8ef7;
+    --green: #3ecf8e;
+    --yellow: #f5c842;
+    --red: #f05a5a;
+    --orange: #f08c3e;
+    --purple: #a78bfa;
   }
+
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--bg); color: var(--text); font-family: 'DM Mono', monospace; font-size: 13px; line-height: 1.6; }
 
-  /* HEADER */
-  header { padding: 20px 40px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 16px; background: var(--bg); position: sticky; top: 0; z-index: 200; }
-  .logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 14px; letter-spacing: 0.1em; color: var(--orange); text-transform: uppercase; }
-  .week { font-size: 11px; color: var(--muted); letter-spacing: 0.06em; }
-  .hdr-right { margin-left: auto; display: flex; align-items: center; gap: 20px; }
-  .pill { padding: 3px 10px; border-radius: 20px; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500; }
-  .pill-green { background: rgba(16,185,129,0.12); color: #34d399; border: 1px solid rgba(16,185,129,0.2); }
+  body {
+    font-family: 'IBM Plex Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.6;
+  }
 
-  /* TAB NAV */
-  .tab-nav { display: flex; gap: 0; border-bottom: 1px solid var(--border); background: var(--bg); position: sticky; top: 65px; z-index: 150; padding: 0 40px; }
-  .tab-btn { padding: 14px 20px; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); background: none; border: none; border-bottom: 2px solid transparent; cursor: pointer; transition: all 0.15s; margin-bottom: -1px; white-space: nowrap; }
-  .tab-btn:hover { color: var(--dim); }
-  .tab-btn.active { color: var(--orange); border-bottom-color: var(--orange); }
+  .header {
+    padding: 32px 40px 24px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+  }
+  .header h1 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: -0.5px;
+  }
+  .header .subtitle {
+    font-size: 13px;
+    color: var(--muted);
+    font-family: 'IBM Plex Mono', monospace;
+  }
 
-  /* TAB PANELS */
-  .tab-panel { display: none; }
-  .tab-panel.active { display: block; }
+  .tabs {
+    display: flex;
+    gap: 0;
+    padding: 0 40px;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+  }
+  .tab {
+    padding: 12px 20px;
+    font-size: 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 500;
+    color: var(--muted);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.15s;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .tab:hover { color: var(--text); }
+  .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
 
-  /* LAYOUT */
-  main { padding: 32px 40px; max-width: 1440px; }
-  .sh { display: flex; align-items: center; gap: 12px; margin: 36px 0 16px; }
-  .sh-label { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
-  .sh-line { flex: 1; height: 1px; background: var(--border); }
+  .content { display: none; padding: 32px 40px; }
+  .content.active { display: block; }
 
-  /* HERO STRIP */
-  .hero { display: grid; grid-template-columns: repeat(6, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
-  .hc { background: var(--surface); padding: 20px 22px; position: relative; }
-  .hc::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; }
-  .hc:nth-child(1)::after { background: var(--orange); }
-  .hc:nth-child(2)::after { background: var(--blue); }
-  .hc:nth-child(3)::after { background: var(--green); }
-  .hc:nth-child(4)::after { background: var(--yellow); }
-  .hc:nth-child(5)::after { background: var(--red); }
-  .hc:nth-child(6)::after { background: var(--purple); }
-  .hc-label { font-size: 10px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
-  .hc-val { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 28px; line-height: 1; }
-  .hc-sub { font-size: 11px; color: var(--muted); margin-top: 5px; }
+  /* Legend */
+  .legend {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 24px;
+    padding: 12px 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    flex-wrap: wrap;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: var(--muted);
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
 
-  /* REP CARDS */
-  .rep-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
-  .rep-card { background: var(--surface); padding: 22px; }
-  .rc-head { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 16px; }
-  .rc-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 15px; }
-  .rc-role { font-size: 11px; color: var(--muted); margin-top: 2px; }
-  .rc-badge { font-size: 10px; padding: 3px 9px; border-radius: 3px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; }
-  .stat-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 14px; }
-  .stat-box { background: var(--surface2); padding: 10px 12px; border: 1px solid var(--border); }
-  .stat-box-label { font-size: 10px; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px; }
-  .stat-box-val { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 18px; }
-  .stat-box-sub { font-size: 10px; color: var(--muted); margin-top: 2px; }
-  .bar-row { display: flex; align-items: center; gap: 8px; margin-bottom: 7px; }
-  .bar-key { font-size: 11px; color: var(--dim); width: 90px; flex-shrink: 0; }
-  .bar-track { flex: 1; height: 3px; background: var(--border2); border-radius: 2px; overflow: hidden; }
-  .bar-fill { height: 100%; border-radius: 2px; }
-  .bar-num { font-size: 11px; color: var(--text); width: 40px; text-align: right; flex-shrink: 0; }
-  .tag-row { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 4px; }
-  .tag { display: inline-block; padding: 2px 7px; border-radius: 3px; font-size: 10px; letter-spacing: 0.05em; font-weight: 500; }
-  .t-hot  { background: rgba(249,115,22,0.14); color: #fb923c; border: 1px solid rgba(249,115,22,0.28); }
-  .t-warm { background: rgba(245,158,11,0.12); color: #fbbf24; border: 1px solid rgba(245,158,11,0.22); }
-  .t-won  { background: rgba(16,185,129,0.12); color: #34d399; border: 1px solid rgba(16,185,129,0.22); }
-  .t-lost { background: rgba(239,68,68,0.12); color: #f87171; border: 1px solid rgba(239,68,68,0.22); }
-  .t-coach{ background: rgba(168,85,247,0.12); color: #c084fc; border: 1px solid rgba(168,85,247,0.22); }
-  .t-miss { background: rgba(107,114,128,0.1); color: #9ca3af; border: 1px solid rgba(107,114,128,0.18); }
-  .t-sgip { background: rgba(59,130,246,0.12); color: #60a5fa; border: 1px solid rgba(59,130,246,0.22); }
-  .t-pge  { background: rgba(16,185,129,0.1); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.2); }
-  .rc-divider { height: 1px; background: var(--border); margin: 14px 0; }
-  .rc-section-label { font-size: 10px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
+  /* Grid */
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
 
-  /* FLAGS */
-  .flags-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); }
-  .flag-card { background: var(--surface); padding: 22px; }
-  .flag-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
-  .flag-item { display: flex; gap: 12px; margin-bottom: 14px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
-  .flag-item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
-  .fi-dot { width: 6px; height: 6px; border-radius: 50%; margin-top: 7px; flex-shrink: 0; }
-  .fi-body { flex: 1; }
-  .fi-head { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 12px; margin-bottom: 3px; }
-  .fi-text { font-size: 12px; color: var(--dim); line-height: 1.55; }
-  .fi-tag { display: inline-block; margin-top: 5px; padding: 2px 7px; border-radius: 3px; font-size: 10px; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 500; }
+  /* Card */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: border-color 0.15s;
+  }
+  .card:hover { border-color: #353d54; }
+  .card.priority-high { border-left: 3px solid var(--green); }
+  .card.priority-warm { border-left: 3px solid var(--yellow); }
+  .card.priority-nurture { border-left: 3px solid var(--muted); }
+  .card.priority-lost { border-left: 3px solid var(--red); }
+  .card.no-ai { border-left: 3px solid var(--orange); opacity: 0.85; }
 
-  /* CONSIDERATIONS */
-  .consider-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
-  .consider-card { background: var(--surface); padding: 20px; }
-  .cc-num { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 40px; color: var(--border2); line-height: 1; margin-bottom: 10px; }
-  .cc-head { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 13px; margin-bottom: 8px; }
-  .cc-body { font-size: 12px; color: var(--dim); line-height: 1.6; }
+  .card-header {
+    padding: 14px 16px 10px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .card-name {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text);
+  }
+  .card-name a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .card-name a:hover { color: var(--accent); }
 
-  /* ── MEETINGS TABLE TAB ── */
-  .mtg-controls { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; align-items: center; }
-  .filter-btn { padding: 5px 14px; border-radius: 3px; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid var(--border2); background: var(--surface); color: var(--muted); cursor: pointer; transition: all 0.15s; }
-  .filter-btn:hover { color: var(--text); border-color: var(--dim); }
-  .filter-btn.active { background: rgba(249,115,22,0.12); color: var(--orange); border-color: rgba(249,115,22,0.35); }
-  .filter-sep { width: 1px; height: 20px; background: var(--border2); margin: 0 4px; }
-  .search-box { padding: 5px 12px; background: var(--surface2); border: 1px solid var(--border2); color: var(--text); font-family: 'DM Mono', monospace; font-size: 11px; border-radius: 3px; outline: none; width: 200px; }
-  .search-box:focus { border-color: var(--orange); }
-  .search-box::placeholder { color: var(--muted); }
-  .mtg-count { margin-left: auto; font-size: 11px; color: var(--muted); }
+  .card-meta {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 4px;
+  }
+  .badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    padding: 2px 7px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+  .badge-rep { background: #1e2540; color: #8ba4e8; }
+  .badge-sgip { background: #1a2e1e; color: var(--green); }
+  .badge-pge { background: #2a2010; color: var(--yellow); }
+  .badge-sjce { background: #1e1a2e; color: var(--purple); }
+  .badge-signed { background: #0d3322; color: #4cef9e; }
+  .badge-lost { background: #2e1010; color: var(--red); }
+  .badge-noai { background: #2e1e0d; color: var(--orange); }
+  .badge-mins { background: var(--surface2); color: var(--muted); }
 
-  .mtg-table-wrap { border: 1px solid var(--border); overflow: hidden; }
-  .mtg-table { width: 100%; border-collapse: collapse; }
-  .mtg-table thead tr { border-bottom: 1px solid var(--border2); background: var(--surface2); }
-  .mtg-table th { padding: 11px 14px; text-align: left; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); font-weight: 500; white-space: nowrap; cursor: pointer; user-select: none; }
-  .mtg-table th:hover { color: var(--dim); }
-  .mtg-table th.sorted { color: var(--orange); }
-  .mtg-table td { padding: 13px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
-  .mtg-table tr:last-child td { border-bottom: none; }
-  .mtg-table tbody tr:hover td { background: rgba(255,255,255,0.018); }
+  .card-body { padding: 12px 16px; }
 
-  .td-customer { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 12px; }
-  .td-customer a { color: var(--text); text-decoration: none; border-bottom: 1px solid var(--border2); transition: color 0.15s, border-color 0.15s; }
-  .td-customer a:hover { color: var(--orange); border-bottom-color: var(--orange); }
-  .td-location { font-size: 11px; color: var(--muted); margin-top: 2px; }
-  .td-rep { font-size: 12px; color: var(--text); }
-  .td-date { font-size: 11px; color: var(--dim); white-space: nowrap; }
-  .td-duration { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 12px; white-space: nowrap; }
-  .td-next { font-size: 11px; color: var(--dim); line-height: 1.5; max-width: 280px; }
-  .td-next strong { color: var(--text); font-weight: 400; }
+  .section-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 6px;
+    margin-top: 10px;
+  }
+  .section-label:first-child { margin-top: 0; }
 
-  .status-badge { display: inline-flex; align-items: center; gap: 5px; padding: 3px 8px; border-radius: 3px; font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; }
-  .s-signed    { background: rgba(16,185,129,0.12); color: #34d399; border: 1px solid rgba(16,185,129,0.25); }
-  .s-nearclose { background: rgba(249,115,22,0.14); color: #fb923c; border: 1px solid rgba(249,115,22,0.3); }
-  .s-proposal  { background: rgba(59,130,246,0.12); color: #60a5fa; border: 1px solid rgba(59,130,246,0.25); }
-  .s-agreement { background: rgba(168,85,247,0.12); color: #c084fc; border: 1px solid rgba(168,85,247,0.25); }
-  .s-active    { background: rgba(245,158,11,0.12); color: #fbbf24; border: 1px solid rgba(245,158,11,0.25); }
-  .s-stalled   { background: rgba(107,114,128,0.1); color: #9ca3af; border: 1px solid rgba(107,114,128,0.2); }
-  .s-lost      { background: rgba(239,68,68,0.1); color: #f87171; border: 1px solid rgba(239,68,68,0.2); }
-  .s-nurture   { background: rgba(107,114,128,0.08); color: #6b7280; border: 1px solid rgba(107,114,128,0.15); }
-  .s-coaching  { background: rgba(168,85,247,0.08); color: #a78bfa; border: 1px solid rgba(168,85,247,0.18); }
+  .summary-text {
+    font-size: 13px;
+    color: #b8c0d8;
+    line-height: 1.55;
+  }
 
-  .rebate-badge { display: inline-block; padding: 2px 6px; border-radius: 2px; font-size: 9px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-left: 5px; }
-  .rb-sgip { background: rgba(59,130,246,0.15); color: #60a5fa; }
-  .rb-pge  { background: rgba(16,185,129,0.12); color: #6ee7b7; }
-  .rb-none { background: rgba(107,114,128,0.1); color: #6b7280; }
-  .rb-amb  { background: rgba(245,158,11,0.1); color: #9ca3af; }
+  .key-notes {
+    list-style: none;
+    margin-top: 4px;
+  }
+  .key-notes li {
+    font-size: 12px;
+    color: #98a4c0;
+    padding: 3px 0 3px 14px;
+    position: relative;
+    line-height: 1.45;
+  }
+  .key-notes li::before {
+    content: '›';
+    position: absolute;
+    left: 2px;
+    color: var(--muted);
+  }
 
-  .no-results { padding: 48px; text-align: center; color: var(--muted); font-size: 13px; }
+  .topics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 4px;
+  }
+  .topic-tag {
+    font-size: 11px;
+    padding: 2px 8px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--muted);
+    font-family: 'IBM Plex Mono', monospace;
+  }
 
-  .footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border); font-size: 11px; color: var(--muted); display: flex; gap: 32px; flex-wrap: wrap; }
+  .no-ai-notice {
+    font-size: 12px;
+    color: var(--orange);
+    font-family: 'IBM Plex Mono', monospace;
+    padding: 8px 10px;
+    background: #1a1208;
+    border-radius: 4px;
+    margin-top: 4px;
+  }
+
+  .flag {
+    font-size: 12px;
+    padding: 6px 10px;
+    border-radius: 4px;
+    margin-top: 6px;
+  }
+  .flag-urgent { background: #1f0d0d; color: #f07070; border-left: 3px solid var(--red); }
+  .flag-warn { background: #1f1808; color: #f0c070; border-left: 3px solid var(--yellow); }
+  .flag-info { background: #0d1520; color: #70a0f0; border-left: 3px solid var(--accent); }
+
+  /* Rep headers */
+  .rep-section { margin-bottom: 32px; }
+  .rep-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .rep-name {
+    font-size: 16px;
+    font-weight: 600;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  .rep-stats {
+    display: flex;
+    gap: 12px;
+    margin-left: auto;
+  }
+  .rep-stat {
+    font-size: 11px;
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--muted);
+  }
+  .rep-stat span { color: var(--text); font-weight: 500; }
+
+  /* Insight tab */
+  .insight-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+  }
+  .insight-block h3 {
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .insight-block p {
+    font-size: 13px;
+    color: #b8c0d8;
+    line-height: 1.6;
+    margin-bottom: 8px;
+  }
+  .insight-block p:last-child { margin-bottom: 0; }
+  .insight-block ul {
+    list-style: none;
+    margin-top: 8px;
+  }
+  .insight-block ul li {
+    font-size: 13px;
+    color: #98a4c0;
+    padding: 4px 0 4px 16px;
+    position: relative;
+  }
+  .insight-block ul li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 11px;
+  }
+
+  .section-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    margin-top: 28px;
+  }
+  .section-title:first-child { margin-top: 0; }
+
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 28px 0;
+  }
+
+  /* AI coverage banner */
+  .ai-banner {
+    background: #1a1208;
+    border: 1px solid #3a2a10;
+    border-radius: 6px;
+    padding: 12px 16px;
+    margin-bottom: 24px;
+    font-size: 12px;
+    color: var(--orange);
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  .ai-banner strong { color: #f0a050; }
+
+  .stat-row {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  .stat-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 12px 16px;
+    min-width: 100px;
+    text-align: center;
+  }
+  .stat-box .num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .stat-box .lbl {
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-family: 'IBM Plex Mono', monospace;
+    margin-top: 2px;
+  }
 </style>
 </head>
 <body>
 
-<header>
-  <div class="logo">Haven Energy</div>
-  <div class="week">// Sales Intelligence // Week of Mar 2–6, 2026</div>
-  <div class="hdr-right">
-    <span class="pill pill-green">6 Reps</span>
-    <span style="font-size:11px;color:var(--muted)">HubSpot + Dialpad AI Recaps</span>
-  </div>
-</header>
-
-<div class="tab-nav">
-  <button class="tab-btn active" onclick="switchTab('overview', this)">Overview</button>
-  <button class="tab-btn" onclick="switchTab('meetings', this)">Customer Meetings</button>
-  <button class="tab-btn" onclick="switchTab('flags', this)">Flags &amp; Patterns</button>
+<div class="header">
+  <h1>HAVEN ENERGY // CALL INTELLIGENCE</h1>
+  <div class="subtitle">Week of Mar 2–6, 2026 · hs_call_summary field</div>
 </div>
 
-<main>
+<div class="tabs">
+  <div class="tab active" onclick="switchTab('overview')">Overview</div>
+  <div class="tab" onclick="switchTab('ezra')">Ezra</div>
+  <div class="tab" onclick="switchTab('jonathan')">Jonathan</div>
+  <div class="tab" onclick="switchTab('vilma')">Vilma</div>
+  <div class="tab" onclick="switchTab('michael')">Michael</div>
+  <div class="tab" onclick="switchTab('shelby')">Shelby</div>
+  <div class="tab" onclick="switchTab('darren')">Darren</div>
+  <div class="tab" onclick="switchTab('insights')">Insights</div>
+</div>
 
-<!-- ═══════════════════════════════════════════
-     TAB 1 — OVERVIEW
-═══════════════════════════════════════════ -->
-<div id="tab-overview" class="tab-panel active">
-
-  <div class="sh"><div class="sh-label">Team Totals</div><div class="sh-line"></div></div>
-  <div class="hero">
-    <div class="hc"><div class="hc-label">Customer Meetings</div><div class="hc-val">61</div><div class="hc-sub">unique contacts this week</div></div>
-    <div class="hc"><div class="hc-label">Total Calls Logged</div><div class="hc-val">105</div><div class="hc-sub">across all 6 reps</div></div>
-    <div class="hc"><div class="hc-label">Total Talk Time</div><div class="hc-val">~55h</div><div class="hc-sub">~9.2h avg per rep</div></div>
-    <div class="hc"><div class="hc-label">Connect Rate</div><div class="hc-val">79%</div><div class="hc-sub">83 of 105 completed</div></div>
-    <div class="hc"><div class="hc-label">Closed Lost</div><div class="hc-val">5</div><div class="hc-sub">all cost objections</div></div>
-    <div class="hc"><div class="hc-label">Likely Closed Won</div><div class="hc-val">1</div><div class="hc-sub">Billy Tinsley / Darren</div></div>
+<!-- OVERVIEW -->
+<div id="tab-overview" class="content active">
+  <div class="ai-banner">
+    <strong>AI COVERAGE NOTE:</strong> hs_call_summary populating on ~60% of this week's substantive calls. Darren, Shelby, and some of Michael's longest calls (Billy Tinsley 52-min, Roger Lake 62-min, Frank Hinthorne 65+27-min) have <strong>no summary</strong> — AI recap is off at the user/department level for those rep lines. Jonathan, Ezra, and Vilma have strong coverage.
   </div>
 
-  <div class="sh"><div class="sh-label">Rep Breakdown</div><div class="sh-line"></div></div>
-  <div class="rep-grid">
-
-    <div class="rep-card">
-      <div class="rc-head"><div><div class="rc-name">Ezra Schroeder</div><div class="rc-role">Sales Rep</div></div><span class="rc-badge t-warm">Mid</span></div>
-      <div class="stat-grid">
-        <div class="stat-box"><div class="stat-box-label">Meetings</div><div class="stat-box-val" style="color:var(--orange)">8</div><div class="stat-box-sub">4 SGIP · 2 PG&E</div></div>
-        <div class="stat-box"><div class="stat-box-label">Talk Time</div><div class="stat-box-val">~4.5h</div><div class="stat-box-sub">avg 34 min</div></div>
-        <div class="stat-box"><div class="stat-box-label">Connect %</div><div class="stat-box-val" style="color:var(--green)">75%</div><div class="stat-box-sub">6 of 8</div></div>
-      </div>
-      <div class="bar-row"><div class="bar-key">Completed</div><div class="bar-track"><div class="bar-fill" style="width:75%;background:var(--green)"></div></div><div class="bar-num">6</div></div>
-      <div class="bar-row"><div class="bar-key">Missed/VM</div><div class="bar-track"><div class="bar-fill" style="width:12%;background:var(--yellow)"></div></div><div class="bar-num">1</div></div>
-      <div class="bar-row"><div class="bar-key">Closed Lost</div><div class="bar-track"><div class="bar-fill" style="width:12%;background:var(--red)"></div></div><div class="bar-num">1</div></div>
-      <div class="rc-divider"></div>
-      <div class="rc-section-label">Active Deals</div>
-      <div class="tag-row">
-        <span class="tag t-hot">🔥 Annette Love — proposal fix needed</span>
-        <span class="tag t-warm">Richard Carriker — end of March follow-up</span>
-        <span class="tag t-warm">John Teaby — wife approval pending</span>
-        <span class="tag t-miss">Rakesh Prasad — stalled / SGIP objection</span>
-        <span class="tag t-lost">Divora Stern — closed lost</span>
-      </div>
-    </div>
-
-    <div class="rep-card">
-      <div class="rc-head"><div><div class="rc-name">Jonathan Messier</div><div class="rc-role">Senior Rep + Coach</div></div><span class="rc-badge t-coach">Coach</span></div>
-      <div class="stat-grid">
-        <div class="stat-box"><div class="stat-box-label">Meetings</div><div class="stat-box-val" style="color:var(--orange)">9</div><div class="stat-box-sub">8 customers · 1 coaching</div></div>
-        <div class="stat-box"><div class="stat-box-label">Talk Time</div><div class="stat-box-val">~8h</div><div class="stat-box-sub">avg 34 min</div></div>
-        <div class="stat-box"><div class="stat-box-label">Connect %</div><div class="stat-box-val" style="color:var(--green)">93%</div><div class="stat-box-sub">13 of 14</div></div>
-      </div>
-      <div class="bar-row"><div class="bar-key">Completed</div><div class="bar-track"><div class="bar-fill" style="width:93%;background:var(--green)"></div></div><div class="bar-num">13</div></div>
-      <div class="bar-row"><div class="bar-key">Missed/VM</div><div class="bar-track"><div class="bar-fill" style="width:7%;background:var(--yellow)"></div></div><div class="bar-num">1</div></div>
-      <div class="bar-row"><div class="bar-key">0 SGIP-related</div><div class="bar-track"><div class="bar-fill" style="width:0%;background:var(--blue)"></div></div><div class="bar-num">0</div></div>
-      <div class="rc-divider"></div>
-      <div class="rc-section-label">Active Deals</div>
-      <div class="tag-row">
-        <span class="tag t-hot">🔥 Uday Gokarn — 52 min consult</span>
-        <span class="tag t-warm">Jon Hanshew — long-term (33 notes)</span>
-        <span class="tag t-warm">Dan Schultze — finally connected</span>
-        <span class="tag t-warm">Stephan Lucanic — check-in</span>
-        <span class="tag t-coach">Coaching Darren Woodward</span>
-      </div>
-    </div>
-
-    <div class="rep-card">
-      <div class="rc-head"><div><div class="rc-name">Vilma Vega</div><div class="rc-role">Sales Rep</div></div><span class="rc-badge t-hot">Active</span></div>
-      <div class="stat-grid">
-        <div class="stat-box"><div class="stat-box-label">Meetings</div><div class="stat-box-val" style="color:var(--orange)">8</div><div class="stat-box-sub">0 SGIP · 0 PG&E</div></div>
-        <div class="stat-box"><div class="stat-box-label">Talk Time</div><div class="stat-box-val">~11h</div><div class="stat-box-sub">avg 47 min</div></div>
-        <div class="stat-box"><div class="stat-box-label">Connect %</div><div class="stat-box-val" style="color:var(--yellow)">71%</div><div class="stat-box-sub">10 of 14</div></div>
-      </div>
-      <div class="bar-row"><div class="bar-key">Completed</div><div class="bar-track"><div class="bar-fill" style="width:71%;background:var(--green)"></div></div><div class="bar-num">10</div></div>
-      <div class="bar-row"><div class="bar-key">Missed/VM</div><div class="bar-track"><div class="bar-fill" style="width:28%;background:var(--red)"></div></div><div class="bar-num">4</div></div>
-      <div class="bar-row"><div class="bar-key">Longest Call</div><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--blue)"></div></div><div class="bar-num">65 min</div></div>
-      <div class="rc-divider"></div>
-      <div class="rc-section-label">Active Deals</div>
-      <div class="tag-row">
-        <span class="tag t-hot">🔥 Frank Hinthorne — 93 min across 2 days</span>
-        <span class="tag t-warm">Rigoberto Delgado — 29 min</span>
-        <span class="tag t-warm">Ahmed Talha Khan — 34 min</span>
-        <span class="tag t-miss">Cruz / Hall / Liang — missed inbounds</span>
-      </div>
-    </div>
-
-    <div class="rep-card">
-      <div class="rc-head"><div><div class="rc-name">Michael McClure</div><div class="rc-role">Sales Rep</div></div><span class="rc-badge t-hot">Top Volume</span></div>
-      <div class="stat-grid">
-        <div class="stat-box"><div class="stat-box-label">Meetings</div><div class="stat-box-val" style="color:var(--orange)">14</div><div class="stat-box-sub">3 SGIP · 1 PG&E</div></div>
-        <div class="stat-box"><div class="stat-box-label">Talk Time</div><div class="stat-box-val">~9h</div><div class="stat-box-sub">avg 22 min</div></div>
-        <div class="stat-box"><div class="stat-box-label">Connect %</div><div class="stat-box-val" style="color:var(--green)">80%</div><div class="stat-box-sub">20 of 25</div></div>
-      </div>
-      <div class="bar-row"><div class="bar-key">Completed</div><div class="bar-track"><div class="bar-fill" style="width:80%;background:var(--green)"></div></div><div class="bar-num">20</div></div>
-      <div class="bar-row"><div class="bar-key">Missed/VM</div><div class="bar-track"><div class="bar-fill" style="width:12%;background:var(--yellow)"></div></div><div class="bar-num">3</div></div>
-      <div class="bar-row"><div class="bar-key">Closed Lost</div><div class="bar-track"><div class="bar-fill" style="width:8%;background:var(--red)"></div></div><div class="bar-num">2</div></div>
-      <div class="rc-divider"></div>
-      <div class="rc-section-label">Active Deals</div>
-      <div class="tag-row">
-        <span class="tag t-hot">🔥 Martin Binesh — agreement stage</span>
-        <span class="tag t-warm">Heather Priest — proposal pending</span>
-        <span class="tag t-warm">Michael Kutilek — contract mod</span>
-        <span class="tag t-warm">Greg / 831 — gathering quotes</span>
-        <span class="tag t-miss">Nanda Doddapaneni — 4 dials, no answer</span>
-        <span class="tag t-lost">Maurath · Gene Wang — closed lost</span>
-      </div>
-    </div>
-
-    <div class="rep-card">
-      <div class="rc-head"><div><div class="rc-name">Shelby Payton</div><div class="rc-role">Sales Rep</div></div><span class="rc-badge t-won">Top Effort</span></div>
-      <div class="stat-grid">
-        <div class="stat-box"><div class="stat-box-label">Meetings</div><div class="stat-box-val" style="color:var(--orange)">14</div><div class="stat-box-sub">0 SGIP · 5 ambiguous</div></div>
-        <div class="stat-box"><div class="stat-box-label">Talk Time</div><div class="stat-box-val">~14h</div><div class="stat-box-sub">avg 31 min</div></div>
-        <div class="stat-box"><div class="stat-box-label">Connect %</div><div class="stat-box-val" style="color:var(--green)">85%</div><div class="stat-box-sub">23 of 27</div></div>
-      </div>
-      <div class="bar-row"><div class="bar-key">Completed</div><div class="bar-track"><div class="bar-fill" style="width:85%;background:var(--green)"></div></div><div class="bar-num">23</div></div>
-      <div class="bar-row"><div class="bar-key">Missed/VM</div><div class="bar-track"><div class="bar-fill" style="width:4%;background:var(--yellow)"></div></div><div class="bar-num">1</div></div>
-      <div class="bar-row"><div class="bar-key">Longest Call</div><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--blue)"></div></div><div class="bar-num">74 min</div></div>
-      <div class="rc-divider"></div>
-      <div class="rc-section-label">Active Deals</div>
-      <div class="tag-row">
-        <span class="tag t-hot">🔥 Usha Bettadapur — 96 min, 3 contacts</span>
-        <span class="tag t-warm">Cipriano Ventura — 47 min</span>
-        <span class="tag t-warm">Robert Panlasigue — 32 min</span>
-        <span class="tag t-warm">Jeffrey Holloman — 15 min</span>
-      </div>
-    </div>
-
-    <div class="rep-card">
-      <div class="rc-head"><div><div class="rc-name">Darren Woodward</div><div class="rc-role">New Rep — Ramping</div></div><span class="rc-badge t-won">🏆 Best Week</span></div>
-      <div class="stat-grid">
-        <div class="stat-box"><div class="stat-box-label">Meetings</div><div class="stat-box-val" style="color:var(--orange)">9</div><div class="stat-box-sub">1 SGIP · 2 PG&E</div></div>
-        <div class="stat-box"><div class="stat-box-label">Talk Time</div><div class="stat-box-val">~16h</div><div class="stat-box-sub">most on team</div></div>
-        <div class="stat-box"><div class="stat-box-label">Connect %</div><div class="stat-box-val" style="color:var(--green)">82%</div><div class="stat-box-sub">14 of 17</div></div>
-      </div>
-      <div class="bar-row"><div class="bar-key">Completed</div><div class="bar-track"><div class="bar-fill" style="width:82%;background:var(--green)"></div></div><div class="bar-num">14</div></div>
-      <div class="bar-row"><div class="bar-key">Longest Call</div><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--blue)"></div></div><div class="bar-num">62 min</div></div>
-      <div class="bar-row"><div class="bar-key">Coaching Calls</div><div class="bar-track"><div class="bar-fill" style="width:25%;background:var(--purple)"></div></div><div class="bar-num">2</div></div>
-      <div class="rc-divider"></div>
-      <div class="rc-section-label">Active Deals</div>
-      <div class="tag-row">
-        <span class="tag t-won">✅ Billy Tinsley — likely signed</span>
-        <span class="tag t-warm">George Martin — DocuSign pending</span>
-        <span class="tag t-hot">🔥 Danny Powell — proposal in flight</span>
-        <span class="tag t-warm">Roger Lake — follow up Monday</span>
-      </div>
-    </div>
-
-  </div><!-- /rep-grid -->
-
-  <div class="footer">
-    <span>Source: HubSpot Calls API + Dialpad AI Recaps</span>
-    <span>Week: Mon Mar 2 – Fri Mar 6, 2026</span>
-    <span>Meetings = unique customer contacts (calls completed &gt;30 sec)</span>
-  </div>
-</div><!-- /tab-overview -->
-
-
-<!-- ═══════════════════════════════════════════
-     TAB 2 — CUSTOMER MEETINGS
-═══════════════════════════════════════════ -->
-<div id="tab-meetings" class="tab-panel">
-
-  <div class="sh"><div class="sh-label">All Customer Meetings — Mar 2–6, 2026</div><div class="sh-line"></div></div>
-
-  <div class="mtg-controls">
-    <button class="filter-btn active" onclick="filterMeetings('all', this)">All <span id="cnt-all"></span></button>
-    <div class="filter-sep"></div>
-    <button class="filter-btn" onclick="filterMeetings('Ezra', this)">Ezra</button>
-    <button class="filter-btn" onclick="filterMeetings('Jonathan', this)">Jonathan</button>
-    <button class="filter-btn" onclick="filterMeetings('Vilma', this)">Vilma</button>
-    <button class="filter-btn" onclick="filterMeetings('Michael', this)">Michael</button>
-    <button class="filter-btn" onclick="filterMeetings('Shelby', this)">Shelby</button>
-    <button class="filter-btn" onclick="filterMeetings('Darren', this)">Darren</button>
-    <div class="filter-sep"></div>
-    <button class="filter-btn" onclick="filterMeetings('sgip', this)">SGIP</button>
-    <button class="filter-btn" onclick="filterMeetings('pge', this)">PG&amp;E Rebate</button>
-    <button class="filter-btn" onclick="filterMeetings('none', this)">No Rebate</button>
-    <div class="filter-sep"></div>
-    <input class="search-box" id="mtg-search" type="text" placeholder="Search customer, notes..." oninput="searchMeetings(this.value)">
-    <span class="mtg-count" id="mtg-count-label"></span>
+  <div class="stat-row">
+    <div class="stat-box"><div class="num">61</div><div class="lbl">Meetings</div></div>
+    <div class="stat-box"><div class="num" style="color:var(--green)">37</div><div class="lbl">w/ Summary</div></div>
+    <div class="stat-box"><div class="num" style="color:var(--orange)">24</div><div class="lbl">No AI Recap</div></div>
+    <div class="stat-box"><div class="num" style="color:var(--yellow)">6</div><div class="lbl">Near Close</div></div>
+    <div class="stat-box"><div class="num" style="color:var(--red)">5</div><div class="lbl">Closed Lost</div></div>
+    <div class="stat-box"><div class="num" style="color:#4cef9e">1</div><div class="lbl">Likely Signed</div></div>
   </div>
 
-  <div class="mtg-table-wrap">
-    <table class="mtg-table" id="mtg-table">
-      <thead>
-        <tr>
-          <th onclick="sortTable('customer')">Customer</th>
-          <th onclick="sortTable('rep')">Rep</th>
-          <th onclick="sortTable('date')">Date</th>
-          <th onclick="sortTable('duration')">Talk Time</th>
-          <th>Rebate Type</th>
-          <th onclick="sortTable('status')">Status</th>
-          <th>Next Steps</th>
-        </tr>
-      </thead>
-      <tbody id="mtg-tbody">
-      </tbody>
-    </table>
-    <div class="no-results" id="no-results" style="display:none">No meetings match the current filter.</div>
+  <div class="legend">
+    <div class="legend-item"><div class="dot" style="background:var(--green)"></div>Near close / strong</div>
+    <div class="legend-item"><div class="dot" style="background:var(--yellow)"></div>Warm / nurture</div>
+    <div class="legend-item"><div class="dot" style="background:var(--orange)"></div>No AI recap</div>
+    <div class="legend-item"><div class="dot" style="background:var(--red)"></div>Closed lost / stalled</div>
+    <div class="legend-item"><div class="dot" style="background:#4cef9e"></div>Likely signed</div>
   </div>
 
-  <div class="footer" style="margin-top:24px">
-    <span>† Rebate type based on AI recap content and customer context. Ambiguous = no transcript available.</span>
-    <span>Duration from hs_call_duration (ms). Multi-call customers show total talk time.</span>
-  </div>
-</div><!-- /tab-meetings -->
-
-
-<!-- ═══════════════════════════════════════════
-     TAB 3 — FLAGS & PATTERNS
-═══════════════════════════════════════════ -->
-<div id="tab-flags" class="tab-panel">
-
-  <div class="sh"><div class="sh-label">Urgent This Weekend / Monday</div><div class="sh-line"></div></div>
-  <div class="flags-grid">
-    <div class="flag-card">
-      <div class="flag-title"><span>🚨</span> Immediate Action Required</div>
-      <div class="flag-item">
-        <div class="fi-dot" style="background:var(--red)"></div>
-        <div class="fi-body">
-          <div class="fi-head">Annette Love — Ezra</div>
-          <div class="fi-text">Proposal sent via wrong method (browser URL, not "Send Proposal" button). Called back Friday, got routed to SDR team instead of Ezra. Most engaged Ezra prospect this week.</div>
-          <span class="fi-tag t-hot">Resend via Send Proposal button in HubSpot</span>
+  <div class="section-title">Key Deals — All Reps</div>
+  <div class="grid">
+    <div class="card priority-high">
+      <div class="card-header">
+        <div>
+          <div class="card-name"><a href="https://app.hubspot.com/contacts/23929498/record/0-1/153191380616" target="_blank">Billy Tinsley</a></div>
+          <div class="card-meta"><span class="badge badge-rep">Darren</span><span class="badge badge-pge">PG&E</span><span class="badge badge-signed">LIKELY SIGNED</span><span class="badge badge-noai">No AI Recap</span></div>
         </div>
+        <span class="badge badge-mins">52 min Mon</span>
       </div>
-      <div class="flag-item">
-        <div class="fi-dot" style="background:var(--red)"></div>
-        <div class="fi-body">
-          <div class="fi-head">Roger Lake — Darren</div>
-          <div class="fi-text">Darren committed to sending a rebate status report by Monday after a 61-min consultation. Roger is engaged and expecting it.</div>
-          <span class="fi-tag t-warm">Send rebate report + follow-up call Monday</span>
-        </div>
-      </div>
-      <div class="flag-item">
-        <div class="fi-dot" style="background:var(--yellow)"></div>
-        <div class="fi-body">
-          <div class="fi-head">Martin Binesh — Michael</div>
-          <div class="fi-text">Ready to sign pending CARE enrollment confirmation from PG&E. Michael needs to resend the agreement. No path to sign without it.</div>
-          <span class="fi-tag t-warm">Resend agreement this weekend</span>
-        </div>
-      </div>
-      <div class="flag-item">
-        <div class="fi-dot" style="background:var(--yellow)"></div>
-        <div class="fi-body">
-          <div class="fi-head">Billy Tinsley post-sale — Darren</div>
-          <div class="fi-text">Contract likely signed. Three open post-sale items: site survey within 5 days, PDF of signed doc to Billy, and 5-year extension cost info.</div>
-          <span class="fi-tag t-won">Confirm all 3 post-sale items dispatched</span>
-        </div>
-      </div>
-      <div class="flag-item">
-        <div class="fi-dot" style="background:var(--muted)"></div>
-        <div class="fi-body">
-          <div class="fi-head">Missed inbounds — Vilma</div>
-          <div class="fi-text">Arnold Cruz, David Hall, and YanPing Liang all called in and got no answer. Warm inbounds — they reached out first.</div>
-          <span class="fi-tag t-miss">Callbacks first thing Monday</span>
-        </div>
+      <div class="card-body">
+        <div class="no-ai-notice">⚠ No hs_call_summary — Darren's line missing AI recap. Transcript: DocuSign walked through, payment collected on 52-min Monday call.</div>
       </div>
     </div>
 
-    <div class="flag-card">
-      <div class="flag-title"><span>⚠️</span> Operations &amp; Process Issues</div>
-      <div class="flag-item">
-        <div class="fi-dot" style="background:var(--red)"></div>
-        <div class="fi-body">
-          <div class="fi-head">Usha Bettadapur — contacted by 2 reps</div>
-          <div class="fi-text">Both Shelby and Jonathan called Usha on Wed 3/4. Jon Hanshew also contacted by both reps same day. Dual outreach without coordination risks customer confusion and messy HubSpot records.</div>
-          <span class="fi-tag t-hot">Confirm HubSpot ownership on both contacts</span>
+    <div class="card priority-high">
+      <div class="card-header">
+        <div>
+          <div class="card-name"><a href="https://app.hubspot.com/contacts/23929498/record/0-1/206522545176" target="_blank">Annette Love</a></div>
+          <div class="card-meta"><span class="badge badge-rep">Ezra</span><span class="badge badge-pge">PG&E Rebate</span></div>
         </div>
+        <span class="badge badge-mins">27+17 min</span>
       </div>
-      <div class="flag-item">
-        <div class="fi-dot" style="background:var(--yellow)"></div>
-        <div class="fi-body">
-          <div class="fi-head">Linda Oliver email — Michael</div>
-          <div class="fi-text">Linda's $64K government-funded solar project has wrong email in the system. She needs installation timeline updates (~4 months out).</div>
-          <span class="fi-tag t-warm">Update Linda Oliver's email in HubSpot</span>
-        </div>
+      <div class="card-body">
+        <div class="section-label">Summary</div>
+        <div class="summary-text">Follow-up on solar + battery proposal. Client has 32-panel 2014 system, interested in adding battery + potentially more panels. $7,500 rebate available. Clients prefer cash payment option.</div>
+        <div class="section-label">Key Notes</div>
+        <ul class="key-notes">
+          <li>Existing 32 panels can integrate with new battery, but only one system feeds into it</li>
+          <li>$500 refundable deposit for site survey and design work</li>
+          <li>PG&E rebate for battery due to shutoffs significantly reduces cost to ~$5K net</li>
+          <li>Financing available 5–8% via Go Green Banks; clients prefer cash</li>
+          <li>Follow-up scheduled next week; need to resend proposal via HubSpot "Send Proposal"</li>
+        </ul>
+        <div class="flag flag-urgent">🔴 URGENT: Proposal was sent wrong method — resend via HubSpot "Send Proposal" button</div>
       </div>
-      <div class="flag-item">
-        <div class="fi-dot" style="background:var(--yellow)"></div>
-        <div class="fi-body">
-          <div class="fi-head">Nanda Doddapaneni — 4 dials, no answer</div>
-          <div class="fi-text">Michael called Nanda four times across Tue/Thu/Fri — no answer, no recap. Either avoiding calls or wrong number/timing.</div>
-          <span class="fi-tag t-miss">Try text or email; re-evaluate contact</span>
+    </div>
+
+    <div class="card priority-high">
+      <div class="card-header">
+        <div>
+          <div class="card-name"><a href="https://app.hubspot.com/contacts/23929498/record/0-1/207294270349" target="_blank">Frank Hinthorne</a></div>
+          <div class="card-meta"><span class="badge badge-rep">Vilma</span><span class="badge badge-noai">No AI Recap</span></div>
         </div>
+        <span class="badge badge-mins">65 min Thu + 28 min Fri</span>
       </div>
-      <div class="flag-item">
-        <div class="fi-dot" style="background:var(--muted)"></div>
-        <div class="fi-body">
-          <div class="fi-head">Unknown 15-min inbound to Shelby</div>
-          <div class="fi-text">+13109805550 called Friday for 15 minutes. Long enough to be a real customer. Needs to be identified and logged.</div>
-          <span class="fi-tag t-miss">ID caller and log in HubSpot</span>
-        </div>
+      <div class="card-body">
+        <div class="no-ai-notice">⚠ No hs_call_summary on Vilma's line — AI recap not enabled. 93 total minutes of engagement this week, strongest buy signal from Vilma's book.</div>
       </div>
-      <div class="flag-item">
-        <div class="fi-dot" style="background:var(--muted)"></div>
-        <div class="fi-body">
-          <div class="fi-head">Dialpad transcript sync not enabled</div>
-          <div class="fi-text">hs_call_transcript field is empty on all records. Full transcripts are not syncing to HubSpot — only partial AI recaps on some calls. Several long calls (Gokarn 52 min, Hinthorne 65 min) have zero written record.</div>
-          <span class="fi-tag t-miss">Enable transcript sync in Dialpad → HubSpot settings</span>
+    </div>
+
+    <div class="card priority-high">
+      <div class="card-header">
+        <div>
+          <div class="card-name"><a href="https://app.hubspot.com/contacts/23929498/record/0-1/206799605795" target="_blank">Usha Bettadapur</a></div>
+          <div class="card-meta"><span class="badge badge-rep">Shelby / Jonathan</span><span class="badge badge-pge">PG&E CARE</span></div>
         </div>
+        <span class="badge badge-mins">73+22 min</span>
+      </div>
+      <div class="card-body">
+        <div class="section-label">Summary (Jonathan's call)</div>
+        <div class="summary-text">Alicia interested in solar + battery, concerned about high 7% financing rate. Jonathan walked through SJCE rebate tiers — she may qualify for larger rebate due to income + age. Considering applying for PG&E CARE program for additional rebate tier.</div>
+        <div class="section-label">Key Notes</div>
+        <ul class="key-notes">
+          <li>Received flyer, inbound lead — high intent</li>
+          <li>Confused about financing; concerned about 7% rate</li>
+          <li>May qualify for enhanced CARE rebate (income + age-based)</li>
+          <li>Jonathan encouraging her to apply for CARE before signing</li>
+          <li>No prepayment penalties confirmed</li>
+        </ul>
+        <div class="flag flag-warn">⚠ Rep ownership conflict: both Shelby (73-min inbound) and Jonathan (22-min) contacted this week — confirm assignment</div>
+      </div>
+    </div>
+
+    <div class="card priority-high">
+      <div class="card-header">
+        <div>
+          <div class="card-name"><a href="https://app.hubspot.com/contacts/23929498/record/0-1/203664289073" target="_blank">George Martin</a></div>
+          <div class="card-meta"><span class="badge badge-rep">Darren</span><span class="badge badge-sgip">SGIP</span><span class="badge badge-noai">No AI Recap</span></div>
+        </div>
+        <span class="badge badge-mins">45 min Mon</span>
+      </div>
+      <div class="card-body">
+        <div class="no-ai-notice">⚠ No hs_call_summary — Darren's line. Per transcript analysis: awaiting wife approval + DocuSign. George called in as inbound on Mon, strong intent. Jonathan flagged as priority SGIP frontload.</div>
+      </div>
+    </div>
+
+    <div class="card priority-high">
+      <div class="card-header">
+        <div>
+          <div class="card-name"><a href="https://app.hubspot.com/contacts/23929498/record/0-1/196901827247" target="_blank">Martin Binesh</a></div>
+          <div class="card-meta"><span class="badge badge-rep">Michael</span><span class="badge badge-pge">PG&E CARE</span><span class="badge badge-noai">No AI Recap</span></div>
+        </div>
+        <span class="badge badge-mins">3 min Mon</span>
+      </div>
+      <div class="card-body">
+        <div class="no-ai-notice">⚠ No hs_call_summary on this call. Agreement stage — Michael needs to resend this weekend. CARE rebate eligibility confirmed.</div>
+        <div class="flag flag-urgent">🟡 Resend agreement this weekend</div>
       </div>
     </div>
   </div>
+</div>
 
-  <div class="sh"><div class="sh-label">Patterns &amp; Things Worth Considering</div><div class="sh-line"></div></div>
-  <div class="consider-grid">
-    <div class="consider-card">
-      <div class="cc-num">01</div>
-      <div class="cc-head" style="color:var(--red)">Cost objection pattern is systemic</div>
-      <div class="cc-body">5 deals stalled or lost this week on cost: Maurath (no outages), Gene Wang (cheaper quotes), Divora Stern (wanted free SGIP), Rakesh Prasad ($12,500 without SGIP), Kurt Koeppe (rebate didn't close gap). This is a pitch and funnel problem, not a rep problem. The ROI narrative isn't landing consistently.</div>
-    </div>
-    <div class="consider-card">
-      <div class="cc-num">02</div>
-      <div class="cc-head" style="color:var(--yellow)">SGIP misalignment starts in the funnel</div>
-      <div class="cc-body">At least 8 of 61 meetings involved leads expecting a free or heavily subsidized system. By the time a rep explains the actual cost, the customer is already disappointed. This is a marketing and SDR messaging problem. Explicit cost range communication before the first rep call would eliminate most of this waste.</div>
-    </div>
-    <div class="consider-card">
-      <div class="cc-num">03</div>
-      <div class="cc-head" style="color:var(--green)">Darren is ramping faster than expected</div>
-      <div class="cc-body">Likely close in week one, most raw talk time on the team (~16h), 4 concurrent active deals, actively calling Jonathan for coaching. He runs long on calls but his engagement is genuine. Investing structured coaching time now could accelerate his ramp significantly.</div>
-    </div>
-    <div class="consider-card">
-      <div class="cc-num">04</div>
-      <div class="cc-head" style="color:var(--blue)">Talk time efficiency gap</div>
-      <div class="cc-body">Darren ~16h, 1 likely close. Vilma ~11h, no closes yet. Michael ~9h, richest pipeline. More hours doesn't equal more deals. A coaching conversation around moving conversations to a decision faster — and what's keeping deals from closing in 1–2 calls — would be high-value for the whole team.</div>
-    </div>
-    <div class="consider-card">
-      <div class="cc-num">05</div>
-      <div class="cc-head" style="color:var(--purple)">Jonathan is playing two roles</div>
-      <div class="cc-body">Jonathan spent ~30 min coaching Darren this week plus joined a live customer call. That produced a likely close for a new rep in week one. If this becomes a regular pattern it should be formalized — lighter quota expectation or deal credit for coaching contributions — otherwise you're getting the output without the incentive structure.</div>
-    </div>
-    <div class="consider-card">
-      <div class="cc-num">06</div>
-      <div class="cc-head" style="color:var(--orange)">Vilma's missed inbound rate</div>
-      <div class="cc-body">4 missed inbounds in one week is the highest on the team by a wide margin. Missed inbounds are the warmest possible lead — they reached out first. Whether this is a scheduling, availability, or routing issue it's worth a quick conversation with Vilma before next week.</div>
+<!-- EZRA -->
+<div id="tab-ezra" class="content">
+  <div class="rep-header">
+    <div class="rep-name" style="color:#a78bfa">Ezra Schroeder</div>
+    <div class="rep-stats">
+      <div class="rep-stat">Calls <span>8 meetings</span></div>
+      <div class="rep-stat">Talk time <span>~4.5h</span></div>
+      <div class="rep-stat">AI Recap <span style="color:var(--green)">Strong coverage</span></div>
     </div>
   </div>
 
-  <div class="footer">
-    <span>Source: HubSpot Calls API + Dialpad AI Recaps // Mar 2–6, 2026</span>
-  </div>
-</div><!-- /tab-flags -->
+  <div class="grid">
+    <div class="card priority-high">
+      <div class="card-header">
+        <div>
+          <div class="card-name"><a href="https://app.hubspot.com/contacts/23929498/record/0-1/206522545176" target="_blank">Annette Love</a></div>
+          <div class="card-meta"><span class="badge badge-pge">PG&E Rebate</span></div>
+        </div>
+        <span class="badge badge-mins">27 + 17 min</span>
+      </div>
+      <div class="card-body">
+        <div class="section-label">Tue 27-min Call</div>
+        <div class="summary-text">Deep consultation on 25-panel proposal to cover consumption. Existing 2014 system has 32 panels at 8.8kW. Rebate of $7,500 available for battery, net cost ~$5,000. No federal tax credit anymore. Financing $259–$378/mo depending on term. Clients want to discuss with spouse.</div>
+        <div class="section-label">Fri 17-min Call</div>
+        <div class="summary-text">Follow-up on proposal. Integration confirmed — existing panels can feed into new battery but only one source feeds it. $500 refundable deposit for site survey. Monthly payment example: $44.33. Clients prefer cash. Next week follow-up scheduled.</div>
+        <div class="section-label">Topics</div>
+        <div class="topics">
+          <span class="topic-tag">proposal-details</span>
+          <span class="topic-tag">pge-rebate</span>
+          <span class="topic-tag">financing</span>
+          <span class="topic-tag">site-survey</span>
+          <span class="topic-tag">spouse-decision</span>
+        </div>
+        <div class="flag flag-urgent">🔴 URGENT: Resend proposal via HubSpot "Send Proposal" button — sent wrong method</div>
+      </div>
+    </div>
 
-</main>
+    <div class="card priority-warm">
+      <div class="card-header">
+        <div>
+          <div class="card-name"><a href="https://app.hubspot.com/contacts/23929498/record/0-1/205913288993" target="_blank">Richard Carriker</a></div>
+          <div class="card-meta"><span class="badge badge-mins">17 min Tue</span></div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="summary-text">Battery-only add-on to existing solar. Interested in whole-home backup + peak savings. Total cost $12,500 + $500 deposit. Location just outside PG&E rebate territory — no rebate available. Installation ~1 day.</div>
+        <div class="section-label">Key Notes</div>
+        <ul class="key-notes">
+          <li>Medical baseline does not apply to whole-home battery</li>
+          <li>Client needs to review agreement before deciding</li>
+          <li>Follow-up early April after client's trip</li>
+        </ul>
+        <div class="topics"><span class="topic-tag">battery-only</span><span class="topic-tag">no-rebate</span><span class="topic-tag">follow-up-april</span></div>
+      </div>
+    </div>
+
+    <div class="card priority-warm">
+      <div class="card-header">
+        <div>
+          <div class="card-name"><a href="https://app.hubspot.com/contacts/23929498/record/0-1/206329939492" target="_blank">John Teaby</a></div>
+          <div class="card-meta"><span class="badge badge-mins">26 min Mon</span></div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="summary-text">Existing solar covering ~80% of needs, high true-up costs. Interested in battery for peak hours + outages. Discussed Franklin vs Tesla Powerwall. $12,500 system, ~$140/mo financing. Generator compatibility addressed.</div>
+        <div class="section-label">Key Notes</div>
+        <ul class="key-notes">
+          <li>Needs spouse approval before providing personal info for financing</li>
+          <li>Concerned about how battery interacts with existing generator</li>
+          <li>Clarified solar doesn't produce during outages without battery</li>
+        </ul>
+        <div class="topics"><span class="topic-tag">battery-add-on</span><span class="topic-tag">generator-compat</span><span class="topic-tag">spouse-gate</span></div>
+      </div>
+    </div>
+
+    <div class="card priority-warm">
+      <div class="card-header">
+        <div>
+          <div class="card-name"><a href="https://app.hubspot.com/contacts/23929498/record/0-1/107579106403" target="_blank">Zina Vitcov</a></div>
+          <div class="card-meta"><span class="badge badge-sgip">SGIP eligible</span><span class="badge badge-mins">32 min Thu</span></div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="summary-text">Existing SGIP customer, AGI $59K qualifies. State program no longer accepting applications. Battery system $12,500, ~$140/mo. Discussed 10-year term, early buyout, ownership transfer. Performance monitoring app included.</div>
+        <div class="section-label">Key Notes</div>
+        <ul class="key-notes">
+          <li>Concerned about practicality as she ages — retirement planning lens</li>
+          <li>Asked about power outage backup reliability</li>
+          <li>Ownership transferable to future buyers</li>
+        </ul>
+        <div class="topics"><span class="topic-tag">sgip-eligible</span><span class="topic-tag">aging-concern</span><span class="topic-tag">transferability</span></div>
+      </div>
+    </div>
+
+    <div class="card priority-warm">
+      <div class="card-header">
+        <div>
+          <div class="card-name"><a href="https://app.hubspot.com/contacts/23929498/record/0-1/148948969547" target="_blank">Norman Wing</a></div>
+          <div class="card-meta"><span class="badge badge-sjce" style="background:#1e1a2e;color:var(--purple)">SJCE + CARE</span><span class="badge badge-mins">28 min Mon</span></div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="summary-text">Tesla solar panels installed, interested in battery add-on. Previous SGIP program no longer available. Qualifies for two stacked rebates: $6,000 (SJCE) + $1,875 (CARE), net cost $4,625 after rebates. Franklin or Tesla Powerwall 3 options.</div>
+        <div class="section-label">Key Notes</div>
+        <ul class="key-notes">
+          <li>$500 deposit, 2-month installation timeline</li>
+          <li>Tesla compatibility confirmed (Franklin or PW3)</li>
+          <li>Strong rebate stack — best net cost on team this week</li>
+        </ul>
+        <div class="topics"><span class="topic-tag">sjce-rebate</span><span class="topic-tag">care-rebate</span><span class="topic-tag">tesla-compat</span></div>
+      </div>
+    </div>
+
+    <div class="card priority-lost">
+      <div class="card-header">
+        <div>
+          <div class="card-name"><a href="https://app.hubspot.com/contacts/23929498/record/0-1/205719529124" target="_blank">Rakesh Prasad</a></div>
+          <div class="card-meta"><span class="badge badge-lost">Stalled</span><span class="badge badge-mins">7 min Mon</span></div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="summary-text">New rental property build, interested in solar. Haven minimum: 10 panels + battery required. Rough estimate $21,000. Needs to discuss with spouse. Proposal sent via email.</div>
+        <div class="section-label">Key Notes</div>
+        <ul class="key-notes">
+          <li>Rental property — no PG&E residential rebate</li>
+          <li>$245/mo (10yr) or $158/mo (20yr) financing</li>
+          <li>Spouse gate, unclear timeline</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card priority-lost">
+      <div class="card-header">
+        <div>
+          <div class="card-name"><a href="https://app.hubspot.com/contacts/23929498/record/0-1/207038296137" target="_blank">Divora Stern</a></div>
+          <div class="card-meta"><span class="badge badge-lost">Closed Lost</span></div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="summary-text">Inbound inquiring about government SGIP program. SDR Ashley confirmed program no longer available. Offered quote for solar/battery at market price. Customer expected free program — disqualified.</div>
+        <div class="topics"><span class="topic-tag">sgip-expectation</span><span class="topic-tag">closed-lost</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- JONATHAN -->
+<div id="tab-jonathan" class="content">
+  <div class="rep-header">
+    <div class="rep-name" style="color:#4f8ef7">Jonathan Messier</div>
+    <div class="rep-stats">
+      <div class="rep-stat">Calls <span>14 meetings</span></div>
+      <div class="rep-stat">Talk time <span>~8h</span></div>
+      <div class="rep-stat">AI Recap <span style="color:var(--green)">Strong coverage</span></div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="card priority-high">
+      <div class="card-header">
+        <div>
+          <div class="card-name"><a href="https://app.hubspot.com/contacts/23929498/record/0-1/206475658278" target="_blank">Uday Gokarn</a></div>
+          <div class="card-meta"><span class="badge badge-mins">52 min Mon</span></div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="section-label">Mon 52-min Deep Consult</div>
+        <div class="summary-text">VIP program oversubscribed — not accepting new customers. Funding normally released June for following year. Discussed Franklin batteries vs Tesla Powerwall advantage. Travis Credit Union financing (10yr or 20yr). Customer has 2 EVs, optimizing panel placement around roof orientation.</div>
+        <div class="section-label">Tue Follow-up (Price Discussion)</div>
+        <div class="summary-text">Uday comparing Haven vs competitors. Jonathan acknowledged higher pricing, requested to see competitor proposals — customer declined to share. Jonathan offered to potentially match competitor pricing. Customer weighing options.</div>
+        <div class="section-label">Key Notes</div>
+        <ul class="key-notes">
+          <li>2 EVs driving higher energy consumption — strong system size justification</li>
+          <li>Jonathan offered price match to competitor quotes</li>
+          <li>Customer in active comparison mode — high intent, not yet committed</li>
+          <li>OPEN_DEAL status in Fremont</li>
+        </ul>
+        <div class="topics"><span class="topic-tag">vip-program</span><span class="topic-tag">franklin-vs-tesla</span><span class="topic-tag">ev-offset</span><span class="topic-tag">competitor-comparison</span><span class="topic-tag">price-match</span></div>
+      </div>
+    </div>
+
+    <div class="card priority-high">
+      <div class="card-header">
+        <div>
+          <div class="card-name"><a href="https://app.hubspot.com/contacts/23929498/record/0-1/1628901" target="_blank">Jon Hanshew</a></div>
+          <div class="card-meta"><span class="badge badge-pge">PG&E Rebate</span><span class="badge badge-mins">25 min Wed</span></div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="summary-text">John wants solar + battery, targeting completion by year-end. Total project $34,287.50, rebate $7,500, net $26,587.50. Proposal sent via email. Leasing option with 10-year maintenance + path to ownership. Shading issues on roof identified as variable. Federal tax credit discussed.</div>
+        <div class="section-label">Key Notes</div>
+        <ul class="key-notes">
+          <li>Emphasized urgency of acting to secure rebates — limited quantity</li>
+          <li>Proposal sent, follow-up in 1 week to discuss questions</li>
+          <li>33 total notes on this contact — long-term nurture relationship</li>
+          <li>Shading impact needs to be factored into final design</li>
+        </ul>
+        <div class="topics"><span class="topic-tag">solar+battery</span><span class="topic-tag">year-end-goal</span><span class="topic-tag">rebate-urgency</span><span class="topic-tag">shading</span></div>
+      </div>
+    </div>
+
+    <div class="card priority-warm">
+      <div class="card-header">
+        <div>
+          <div class="card-name"><a href="https://app.hubspot.com/contacts/23929498/record/0-1/205359822509" target="_blank">Stephan Lucanic</a></div>
+          <div class="card-meta"><span class="badge badge-mins">9 min Wed</span></div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="summary-text">Steven has prior solar/battery experience, interested in reducing costs. Jonathan introduced energy backup + storage value prop. Highlighted California energy landscape + state incentives for residential storage. Federal tax credits reducing costs significantly.</div>
+        <div class="section-label">Key Notes</div>
+        <ul class="key-notes">
+          <li>Jonathan to email Steven to request energy bill for analysis</li>
+          <li>Previously found solar not feasible — education needed on cost changes</li>
+          <li>Reconvene after bill review</li>
+        </ul>
+        <div class="topics"><span class="topic-tag">energy-bill-needed</span><span class="topic-tag">prior-solar-experience</span><span class="topic-tag">ca-incentives</span></div>
+      </div>
+    </div>
+
+    <div class="card priority-warm">
+      <div class="card-header">
+        <div>
+          <div class="card-name"><a href="https://app.hubspot.com/contacts/23929498/record/0-1/206786679709" target="_blank">Dan Schultze</a></div>
+          <div class="card-meta"><span class="badge badge-pge">PG&E/SJCE</span><span class="badge badge-mins">17 min Thu</span></div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="summary-text">Finally connected after multiple attempts. Dan exploring battery backup for existing solar in Monterey. Haven offers up to $13,000 in rebates — out-of-pocket after rebates: $12,500 (pre-rebate full price implied). $500 deposit, 2-month install. Dan wants to contact rebate provider directly before signing.</div>
+        <div class="section-label">Key Notes</div>
+        <ul class="key-notes">
+          <li>Dan will submit rebate application himself; Haven provides documentation</li>
+          <li>Follow-up scheduled for a couple days later</li>
+          <li>Clarification needed: rebate amount vs net cost messaging inconsistent in summary</li>
+        </ul>
+        <div class="topics"><span class="topic-tag">battery-backup</span><span class="topic-tag">rebate-application</span><span class="topic-tag">monterey</span></div>
+      </div>
+    </div>
+
+    <div class="card priority-high">
+      <div class="card-header">
+        <div>
+          <div class="card-name"><a href="https://app.hubspot.com/contacts/23929498/record/0-1/206799605795" target="_blank">Usha Bettadapur</a></div>
+          <div class="card-meta"><span class="badge badge-pge">PG&E CARE</span><span class="badge badge-mins">22 min Wed</span></div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="summary-text">Jonathan's call with Alicia (Usha) — solar + battery interest, inbound from flyer. Concerned about 7% financing. Jonathan walked SJCE rebate tiers; she may qualify for enhanced rebate (income + age). Encouraged to apply for CARE program before signing.</div>
+        <div class="flag flag-warn">⚠ Also contacted by Shelby (73-min inbound same day) — confirm rep ownership</div>
+      </div>
+    </div>
+
+    <div class="card priority-warm">
+      <div class="card-header">
+        <div>
+          <div class="card-name"><a href="https://app.hubspot.com/contacts/23929498/record/0-1/206073024396" target="_blank">Francine Farrell</a></div>
+          <div class="card-meta"><span class="badge badge-mins">14 min Tue</span></div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="summary-text">Has existing solar, interested in adding Tesla batteries. Concerned about cost + tax credit availability. Jonathan quoted $19,000 after tax credits. 10-year warranty, prepaid lease, fair market value buyout after 10 years.</div>
+        <div class="section-label">Key Notes</div>
+        <ul class="key-notes">
+          <li>Jonathan offered to consult manager on price reduction</li>
+          <li>Francine prefers working with a smaller company — relationship angle works</li>
+          <li>Federal tax credit process explained; eligibility issues discussed</li>
+        </ul>
+        <div class="topics"><span class="topic-tag">tesla-battery</span><span class="topic-tag">price-negotiation</span><span class="topic-tag">smaller-company-pref</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- VILMA -->
+<div id="tab-vilma" class="content">
+  <div class="rep-header">
+    <div class="rep-name" style="color:#3ecf8e">Vilma Vega</div>
+    <div class="rep-stats">
+      <div class="rep-stat">Calls <span>14 meetings</span></div>
+      <div class="rep-stat">Talk time <span>~11h</span></div>
+      <div class="rep-stat">AI Recap <span style="color:var(--orange)">Partial — rep line issue</span></div>
+    </div>
+  </div>
+
+  <div class="ai-banner">Vilma's direct calls show no hs_call_summary. AI recap appears to be off for her Dialpad line. Only SDR-handled calls on her contacts have summaries.</div>
+
+  <div class="grid">
+    <div class="card no-ai">
+      <div class="card-header">
+        <div>
+          <div class="card-name"><a href="https://app.hubspot.com/contacts/23929498/record/0-1/207294270349" target="_blank">Frank Hinthorne</a></div>
+          <div class="card-meta"><span class="badge badge-noai">No AI Recap</span></div>
+        </div>
+        <span class="badge badge-mins">65 min Thu + 28 min Fri</span>
+      </div>
+      <div class="card-body">
+        <div class="no-ai-notice">⚠ 93 total minutes this week — strongest engagement in Vilma's book. No AI summary available. Based on transcript analysis: near-close, proposal stage.</div>
+      </div>
+    </div>
+
+    <div class="card no-ai">
+      <div class="card-header">
+        <div>
+          <div class="card-name"><a href="https://app.hubspot.com/contacts/23929498/record/0-1/123471446380" target="_blank">Rigoberto Delgado</a></div>
+          <div class="card-meta"><span class="badge badge-noai">No AI Recap</span></div>
+        </div>
+        <span class="badge badge-mins">29 min Mon</span>
+      </div>
+      <div class="card-body">
+        <div class="no-ai-notice">⚠ 29-min substantive call, no summary. Active lead — manually entered as good pipeline.</div>
+      </div>
+    </div>
+
+    <div class="card no-ai">
+      <div class="card-header">
+        <div>
+          <div class="card-name"><a href="https://app.hubspot.com/contacts/23929498/record/0-1/206777062310" target="_blank">Ahmed Talha Khan</a></div>
+          <div class="card-meta"><span class="badge badge-noai">No AI Recap</span></div>
+        </div>
+        <span class="badge badge-mins">34 min Wed</span>
+      </div>
+      <div class="card-body">
+        <div class="no-ai-notice">⚠ 34-min call on Wed, no summary. Good lead per transcript analysis.</div>
+      </div>
+    </div>
+
+    <div class="card no-ai">
+      <div class="card-header">
+        <div>
+          <div class="card-name"><a href="https://app.hubspot.com/contacts/23929498/record/0-1/139764859996" target="_blank">Barbara Lilker</a></div>
+          <div class="card-meta"><span class="badge badge-noai">No AI Recap</span></div>
+        </div>
+        <span class="badge badge-mins">19 min Mon</span>
+      </div>
+      <div class="card-body">
+        <div class="no-ai-notice">⚠ No summary. Mon call, nurture stage.</div>
+      </div>
+    </div>
+
+    <div class="card priority-lost">
+      <div class="card-header">
+        <div>
+          <div class="card-name">Arnold Cruz / David Hall / YanPing Liang</div>
+          <div class="card-meta"><span class="badge badge-lost">Missed Inbounds</span></div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="summary-text">3 inbound leads Vilma missed this week. No callbacks logged. Revenue risk — inbound leads are highest-intent. Highest missed-inbound count on the team.</div>
+        <div class="flag flag-urgent">🔴 Call back all 3 Monday morning — high priority</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MICHAEL -->
+<div id="tab-michael" class="content">
+  <div class="rep-header">
+    <div class="rep-name" style="color:#f5c842">Michael McClure</div>
+    <div class="rep-stats">
+      <div class="rep-stat">Calls <span>25 calls</span></div>
+      <div class="rep-stat">Talk time <span>~9h</span></div>
+      <div class="rep-stat">AI Recap <span style="color:var(--orange)">Mixed</span></div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="card no-ai">
+      <div class="card-header">
+        <div>
+          <div class="card-name"><a href="https://app.hubspot.com/contacts/23929498/record/0-1/196901827247" target="_blank">Martin Binesh</a></div>
+          <div class="card-meta"><span class="badge badge-pge">PG&E CARE</span><span class="badge badge-noai">No AI Recap</span></div>
+        </div>
+        <span class="badge badge-mins">Agreement Stage</span>
+      </div>
+      <div class="card-body">
+        <div class="no-ai-notice">⚠ No AI summary on Michael's line. Per transcript: agreement stage, CARE rebate confirmed, needs resend this weekend.</div>
+        <div class="flag flag-urgent">🟡 Resend agreement this weekend</div>
+      </div>
+    </div>
+
+    <div class="card no-ai">
+      <div class="card-header">
+        <div>
+          <div class="card-name"><a href="https://app.hubspot.com/contacts/23929498/record/0-1/207005928027" target="_blank">Heather Priest</a></div>
+          <div class="card-meta"><span class="badge badge-noai">No AI Recap</span></div>
+        </div>
+        <span class="badge badge-mins">26 min Wed</span>
+      </div>
+      <div class="card-body">
+        <div class="no-ai-notice">⚠ 26-min call, proposal pending. Good lead status.</div>
+      </div>
+    </div>
+
+    <div class="card no-ai">
+      <div class="card-header">
+        <div>
+          <div class="card-name"><a href="https://app.hubspot.com/contacts/23929498/record/0-1/197562364581" target="_blank">Michael Kutilek</a></div>
+          <div class="card-meta"><span class="badge badge-noai">No AI Recap</span></div>
+        </div>
+        <span class="badge badge-mins">5 min Thu</span>
+      </div>
+      <div class="card-body">
+        <div class="no-ai-notice">⚠ Contract modification discussion — $12,500 system + $500 buyout yr 6 option. No AI summary on this call.</div>
+      </div>
+    </div>
+
+    <div class="card priority-warm">
+      <div class="card-header">
+        <div>
+          <div class="card-name"><a href="https://app.hubspot.com/contacts/23929498/record/0-1/130145536847" target="_blank">Linda Oliver</a></div>
+          <div class="card-meta"><span class="badge badge-sgip">SGIP Govt $64K</span></div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="summary-text">Government SGIP application — $64K incentive bucket. Inbound from Linda Fri. Email needs update in HubSpot before further outreach.</div>
+        <div class="flag flag-urgent">🟡 Update Linda Oliver email address in HubSpot</div>
+      </div>
+    </div>
+
+    <div class="card priority-warm">
+      <div class="card-header">
+        <div>
+          <div class="card-name"><a href="https://app.hubspot.com/contacts/23929498/record/0-1/198003620762" target="_blank">Roberto Eugenio</a></div>
+          <div class="card-meta"><span class="badge badge-sgip">SGIP / PTO</span></div>
+        </div>
+        <span class="badge badge-mins">PTO Coordination</span>
+      </div>
+      <div class="card-body">
+        <div class="summary-text">PTO coordination in progress. Multiple calls this week across Michael and install team. Active post-contract management.</div>
+        <div class="topics"><span class="topic-tag">pto</span><span class="topic-tag">post-contract</span></div>
+      </div>
+    </div>
+
+    <div class="card priority-warm">
+      <div class="card-header">
+        <div>
+          <div class="card-name"><a href="https://app.hubspot.com/contacts/23929498/record/0-1/160086678706" target="_blank">BK Phan</a></div>
+          <div class="card-meta"><span class="badge badge-sgip">SGIP Pending</span></div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="summary-text">Inbound call Thu. SGIP application pending review. No summary — short call.</div>
+      </div>
+    </div>
+
+    <div class="card priority-lost">
+      <div class="card-header">
+        <div>
+          <div class="card-name">Christoph Maurath / Gene Wang / Charles Morris</div>
+          <div class="card-meta"><span class="badge badge-lost">Closed Lost</span></div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="summary-text">Three closed-lost this week. Christoph: no outages, no motivation. Gene Wang: cheaper competitive quotes. Charles Morris: cost objection.</div>
+        <div class="topics"><span class="topic-tag">no-outages</span><span class="topic-tag">competitor-price</span><span class="topic-tag">cost-objection</span></div>
+      </div>
+    </div>
+
+    <div class="card priority-lost">
+      <div class="card-header">
+        <div>
+          <div class="card-name"><a href="https://app.hubspot.com/contacts/23929498/record/0-1/205071021392" target="_blank">Nanda Doddapaneni</a></div>
+          <div class="card-meta"><span class="badge badge-lost">4 calls no answer</span></div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="summary-text">4 outbound attempts this week with no substantive connection. Try text/email to break through.</div>
+        <div class="flag flag-warn">⚠ Switch to text or email — 4 calls with no answer</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SHELBY -->
+<div id="tab-shelby" class="content">
+  <div class="rep-header">
+    <div class="rep-name" style="color:#f08c3e">Shelby Payton</div>
+    <div class="rep-stats">
+      <div class="rep-stat">Calls <span>27 calls</span></div>
+      <div class="rep-stat">Talk time <span>~14h</span></div>
+      <div class="rep-stat">AI Recap <span style="color:var(--orange)">Limited</span></div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="card priority-high">
+      <div class="card-header">
+        <div>
+          <div class="card-name"><a href="https://app.hubspot.com/contacts/23929498/record/0-1/206799605795" target="_blank">Usha Bettadapur</a></div>
+          <div class="card-meta"><span class="badge badge-pge">PG&E CARE</span></div>
+        </div>
+        <span class="badge badge-mins">73 min inbound Tue</span>
+      </div>
+      <div class="card-body">
+        <div class="summary-text">73-minute inbound — highest single-call engagement of Shelby's week. Inbound from flyer, solar + battery interest. SJCE rebate eligible, CARE program candidate. Also called by Jonathan same week — ownership needs resolution.</div>
+        <div class="flag flag-warn">⚠ Rep ownership: confirm with Jonathan who owns this deal going forward</div>
+      </div>
+    </div>
+
+    <div class="card no-ai">
+      <div class="card-header">
+        <div>
+          <div class="card-name"><a href="https://app.hubspot.com/contacts/23929498/record/0-1/205932884650" target="_blank">Cipriano Ventura</a></div>
+          <div class="card-meta"><span class="badge badge-noai">No AI Recap</span></div>
+        </div>
+        <span class="badge badge-mins">47 min</span>
+      </div>
+      <div class="card-body">
+        <div class="no-ai-notice">⚠ 47-min conversation across Mon + Tue. No summary. Active pipeline.</div>
+      </div>
+    </div>
+
+    <div class="card no-ai">
+      <div class="card-header">
+        <div>
+          <div class="card-name"><a href="https://app.hubspot.com/contacts/23929498/record/0-1/207120076848" target="_blank">Robert Panlasigue</a></div>
+          <div class="card-meta"><span class="badge badge-noai">No AI Recap</span></div>
+        </div>
+        <span class="badge badge-mins">32 min Wed</span>
+      </div>
+      <div class="card-body">
+        <div class="no-ai-notice">⚠ 32 minutes, no summary. Good lead.</div>
+      </div>
+    </div>
+
+    <div class="card no-ai">
+      <div class="card-header">
+        <div>
+          <div class="card-name"><a href="https://app.hubspot.com/contacts/23929498/record/0-1/206586629996" target="_blank">Jeffrey Holloman</a></div>
+          <div class="card-meta"><span class="badge badge-noai">No AI Recap</span></div>
+        </div>
+        <span class="badge badge-mins">15 min Wed</span>
+      </div>
+      <div class="card-body">
+        <div class="no-ai-notice">⚠ 15-min outbound Wed. No summary.</div>
+      </div>
+    </div>
+
+    <div class="card no-ai">
+      <div class="card-header">
+        <div>
+          <div class="card-name"><a href="https://app.hubspot.com/contacts/23929498/record/0-1/206527451925" target="_blank">Paul Goodman</a></div>
+          <div class="card-meta"><span class="badge badge-noai">No AI Recap</span></div>
+        </div>
+        <span class="badge badge-mins">9 min inbound Mon</span>
+      </div>
+      <div class="card-body">
+        <div class="no-ai-notice">⚠ Inbound. No summary on Shelby's line.</div>
+      </div>
+    </div>
+
+    <div class="card priority-lost">
+      <div class="card-header">
+        <div>
+          <div class="card-name">+13109805550 (Unknown)</div>
+          <div class="card-meta"><span class="badge badge-lost">Unidentified</span></div>
+        </div>
+        <span class="badge badge-mins">15 min Fri</span>
+      </div>
+      <div class="card-body">
+        <div class="summary-text">15-minute call Fri with unidentified number. Not logged in HubSpot.</div>
+        <div class="flag flag-warn">⚠ Identify caller and log in HubSpot this weekend</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DARREN -->
+<div id="tab-darren" class="content">
+  <div class="rep-header">
+    <div class="rep-name" style="color:#f05a5a">Darren Woodward</div>
+    <div class="rep-stats">
+      <div class="rep-stat">Calls <span>17 calls</span></div>
+      <div class="rep-stat">Talk time <span>~16h</span></div>
+      <div class="rep-stat">AI Recap <span style="color:var(--red)">None — rep line issue</span></div>
+    </div>
+  </div>
+
+  <div class="ai-banner">Darren's Dialpad line has zero hs_call_summary records this week. All data from transcript analysis only. This is the most critical line to fix — Darren has the week's likely signed deal and two near-closes.</div>
+
+  <div class="grid">
+    <div class="card priority-high" style="border-left-color:#4cef9e">
+      <div class="card-header">
+        <div>
+          <div class="card-name"><a href="https://app.hubspot.com/contacts/23929498/record/0-1/153191380616" target="_blank">Billy Tinsley</a></div>
+          <div class="card-meta"><span class="badge badge-signed">LIKELY SIGNED</span><span class="badge badge-pge">PG&E</span><span class="badge badge-noai">No AI Recap</span></div>
+        </div>
+        <span class="badge badge-mins">52 min Mon</span>
+      </div>
+      <div class="card-body">
+        <div class="no-ai-notice">⚠ No hs_call_summary on Darren's line. Per transcript: DocuSign walked through, payment collected. Likely signed — highest-confidence close of the week.</div>
+        <div class="section-label">Post-Sale Checklist</div>
+        <ul class="key-notes">
+          <li>Confirm site survey scheduling</li>
+          <li>Send PDF contract copy</li>
+          <li>Provide 5-year extension information</li>
+        </ul>
+        <div class="flag flag-warn">🟡 Post-sale follow-through: site survey + PDF + 5yr extension info</div>
+      </div>
+    </div>
+
+    <div class="card priority-high">
+      <div class="card-header">
+        <div>
+          <div class="card-name"><a href="https://app.hubspot.com/contacts/23929498/record/0-1/203664289073" target="_blank">George Martin</a></div>
+          <div class="card-meta"><span class="badge badge-sgip">SGIP Priority</span><span class="badge badge-noai">No AI Recap</span></div>
+        </div>
+        <span class="badge badge-mins">45 min Mon inbound</span>
+      </div>
+      <div class="card-body">
+        <div class="no-ai-notice">⚠ No summary. Per transcript: George called in as inbound Mon, strong intent. Awaiting wife approval + DocuSign. Jonathan flagged as priority SGIP frontload.</div>
+        <div class="section-label">Next Steps</div>
+        <ul class="key-notes">
+          <li>Wait for wife approval — Darren should follow up mid-week next week</li>
+          <li>SGIP application should be frontloaded once signed</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card priority-high">
+      <div class="card-header">
+        <div>
+          <div class="card-name"><a href="https://app.hubspot.com/contacts/23929498/record/0-1/206799307120" target="_blank">Danny Powell</a></div>
+          <div class="card-meta"><span class="badge badge-noai">No AI Recap</span></div>
+        </div>
+        <span class="badge badge-mins">31 min Tue + 34 min Fri inbound</span>
+      </div>
+      <div class="card-body">
+        <div class="no-ai-notice">⚠ Two calls this week including 34-min Friday inbound. Per transcript: 120% offset proposal pending. Strong buying intent — Danny called back as inbound on Friday.</div>
+        <div class="section-label">Status</div>
+        <ul class="key-notes">
+          <li>120% offset system proposal needs to be sent</li>
+          <li>Inbound callback Friday = high intent signal</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card priority-warm">
+      <div class="card-header">
+        <div>
+          <div class="card-name"><a href="https://app.hubspot.com/contacts/23929498/record/0-1/205797897864" target="_blank">Roger Lake</a></div>
+          <div class="card-meta"><span class="badge badge-pge">PG&E Rebate</span><span class="badge badge-noai">No AI Recap</span></div>
+        </div>
+        <span class="badge badge-mins">62 min Wed</span>
+      </div>
+      <div class="card-body">
+        <div class="no-ai-notice">⚠ 62-min deep consult Wed. No AI summary. Per transcript: rebate status report due Monday. Jonathan coaching Darren on this deal.</div>
+        <div class="flag flag-urgent">🔴 URGENT: Send Roger Lake rebate status report Monday morning</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- INSIGHTS -->
+<div id="tab-insights" class="content">
+  <div class="section-title">AI Recap Coverage Gap</div>
+  <div class="insight-block">
+    <h3>hs_call_summary vs hs_call_body — What We Learned</h3>
+    <p>The AI recap that renders in HubSpot's UI (the formatted Summary / Key Notes / Topics Discussed block) is stored in <strong>hs_call_summary</strong>, not hs_call_body. Previous analysis was only querying hs_call_body, which explains why recaps appeared missing when they were actually present.</p>
+    <p>Coverage this week: ~37 of 61 substantive calls have hs_call_summary populated. The gap is entirely on Darren and Shelby's rep lines, and some of Michael's and Vilma's calls.</p>
+    <ul>
+      <li>Jonathan and Ezra: strong AI recap coverage (~90%)</li>
+      <li>Vilma: partial — only SDR-handled calls have summaries</li>
+      <li>Michael: mixed — some calls have it, others don't</li>
+      <li>Darren and Shelby: zero hs_call_summary records this week</li>
+    </ul>
+    <p><strong>Root cause hypothesis:</strong> Dialpad AI transcription is controlled per-user or per-department. Darren and Shelby (and Vilma's rep line) likely have AI transcription off in Dialpad's AI Settings panel. Action: Dialpad admin → AI Settings → check per-user toggle for these reps.</p>
+  </div>
+
+  <div class="section-title">Objection Patterns</div>
+  <div class="insight-block">
+    <h3>What's Killing Deals</h3>
+    <p>Five closed-lost calls this week surfaced three distinct objection types that should be addressed upstream in the funnel:</p>
+    <ul>
+      <li><strong>SGIP expectation mismatch</strong> (Divora Stern, Rakesh Prasad): Leads arriving expecting free or heavily subsidized SGIP programs that no longer exist. Fix: ads/landing pages/SDR scripts must state $10K–$14K net cost upfront.</li>
+      <li><strong>Competitive pricing</strong> (Gene Wang): Cheaper quotes from competitors. Jonathan is already price-matching on Uday Gokarn — need a clearer pricing defense playbook team-wide.</li>
+      <li><strong>No outage motivation</strong> (Christoph Maurath): Customer doesn't experience outages, sees no ROI. Need an ROI reframe around NEM 3.0 bill savings, not just outage protection.</li>
+    </ul>
+  </div>
+
+  <div class="section-title">Financing Observations</div>
+  <div class="insight-block">
+    <h3>Rate Concerns Surfacing Consistently</h3>
+    <p>Three separate calls this week had customers raise financing rate concerns: Usha Bettadapur (7% concern), Uday Gokarn (compared to competitor offers), and Annette Love (preferred cash). The team is doing well explaining monthly payments but losing the frame on total cost. Recommendation: lead with monthly payment AND net cost after rebates rather than gross system price.</p>
+    <ul>
+      <li>Norman Wing deal has best rebate stack: $7,875 in stacked SJCE + CARE rebates → $4,625 net</li>
+      <li>Jon Hanshew: $7,500 rebate on $34K project — rebate urgency messaging working well</li>
+      <li>Multiple calls mentioned SGIP program as dead — team aligned on messaging</li>
+    </ul>
+  </div>
+
+  <div class="section-title">Coaching Signal</div>
+  <div class="insight-block">
+    <h3>Jonathan's Dual Role Is Working</h3>
+    <p>Jonathan logged ~30 min of coaching with Darren and joined a live customer call. Darren had the week's likely signed deal. This is a real causal link worth formalizing — Jonathan's coaching time is generating revenue. Consider partial deal attribution for coaching closes or a structured weekly coaching session.</p>
+  </div>
+
+  <div class="section-title">Immediate Actions This Weekend</div>
+  <div class="insight-block">
+    <h3>Open Items Before Monday</h3>
+    <ul>
+      <li>🔴 Ezra → Annette Love: Resend proposal via HubSpot "Send Proposal" button</li>
+      <li>🔴 Darren → Roger Lake: Prepare and send rebate status report for Monday</li>
+      <li>🟡 Michael → Martin Binesh: Resend agreement</li>
+      <li>🟡 Darren → Billy Tinsley: Confirm site survey, send PDF, 5-yr extension info</li>
+      <li>🟡 Michael → Linda Oliver: Update email address in HubSpot</li>
+      <li>⚠ Vilma: Call back Arnold Cruz, David Hall, YanPing Liang Monday morning</li>
+      <li>⚠ Shelby or Jonathan: Confirm Usha Bettadapur rep ownership</li>
+      <li>⚠ Shelby: Identify +13109805550 and log in HubSpot</li>
+      <li>🔧 Dialpad admin: Enable AI transcription for Darren, Shelby, Vilma rep lines</li>
+    </ul>
+  </div>
+</div>
 
 <script>
-// ── TAB SWITCHING ──
-function switchTab(name, btn) {
-  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+function switchTab(name) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
+  const tabs = ['overview','ezra','jonathan','vilma','michael','shelby','darren','insights'];
+  const idx = tabs.indexOf(name);
+  document.querySelectorAll('.tab')[idx].classList.add('active');
   document.getElementById('tab-' + name).classList.add('active');
-  btn.classList.add('active');
 }
-
-// ── MEETINGS DATA ──
-const BASE = 'https://app.hubspot.com/contacts/23929498/record/0-1/';
-const MEETINGS = [
-  // EZRA
-  { customer:'Muhammad Latif',    location:'Madera, CA',        rep:'Ezra',     date:'Mon 3/2',  duration:'~25 min', rebate:'sgip',  status:'stalled',   statusLabel:'Stalled',      next:'No PG&E rebate eligibility. No clear path forward — re-qualify or close.', hsId:'206064560410' },
-  { customer:'Norman Wing',       location:'San Jose, CA',      rep:'Ezra',     date:'Mon 3/2',  duration:'~20 min', rebate:'pge',   status:'active',    statusLabel:'Active',       next:'Needs utility bill for further analysis. Early info-gathering stage.', hsId:'148948969547' },
-  { customer:'John Teaby',        location:'Monterey, CA',      rep:'Ezra',     date:'Mon 3/2',  duration:'~30 min', rebate:'none',  status:'active',    statusLabel:'Active',       next:'Discussing with wife. Send Travis application link when she approves.', hsId:'206329939492' },
-  { customer:'Rakesh Prasad',     location:'Hayward, CA',       rep:'Ezra',     date:'Mon 3/2',  duration:'~40 min', rebate:'sgip',  status:'stalled',   statusLabel:'Stalled',      next:'Stalled on $12,500 upfront without SGIP. Multiple missed callbacks. Re-engage with PPA framing.', hsId:'205719529124' },
-  { customer:'Richard Carriker',  location:'Santa Margarita, CA', rep:'Ezra',   date:'Tue 3/3',  duration:'~35 min', rebate:'pge',   status:'active',    statusLabel:'Active',       next:'PG&E rebate eligible. Interested but not ready. In Australia one month — follow up end of March.', hsId:'205913288993' },
-  { customer:'Annette Love',      location:'Morgan Hill, CA',   rep:'Ezra',     date:'Tue 3/3 + Fri 3/6', duration:'~30 min', rebate:'none', status:'nearclose', statusLabel:'Near Close', next:'🚨 Resend proposal via "Send Proposal" button (not browser URL). Called back Fri, got routed to SDR.', hsId:'206522545176' },
-  { customer:'Divora Stern',      location:'Willits, CA',       rep:'Ezra',     date:'Thu 3/5',  duration:'~15 min', rebate:'sgip',  status:'lost',      statusLabel:'Lost',         next:'Only wanted free SGIP system. Hung up. No further action.', hsId:'207038296137' },
-  { customer:'Zina Vitcov',       location:'Cool, CA',          rep:'Ezra',     date:'Thu 3/5',  duration:'~32 min', rebate:'sgip',  status:'active',    statusLabel:'Active',       next:'Existing SGIP customer from Mar 2025. Likely service/follow-up call. Confirm status.', hsId:'107579106403' },
-  // JONATHAN
-  { customer:'Uday Gokarn',       location:'Fremont, CA',       rep:'Jonathan', date:'Mon 3/2',  duration:'~55 min', rebate:'none',  status:'active',    statusLabel:'Active',       next:'Deep 52-min consultation. OPEN_DEAL / SQL. Likely in proposal or contract stage — confirm next step.', hsId:'206475658278' },
-  { customer:'Jon Hanshew',       location:'Oakland, CA',       rep:'Jonathan', date:'Wed 3/4',  duration:'~25 min', rebate:'none',  status:'active',    statusLabel:'Active',       next:'Long-term deal (33 notes in HubSpot). Active negotiation. Confirm current stage and push to decision.', hsId:'1628901' },
-  { customer:'Dan Schultze',      location:'Monterey, CA',      rep:'Jonathan', date:'Thu 3/5',  duration:'~18 min', rebate:'none',  status:'active',    statusLabel:'Active',       next:'Finally connected after 4 dials. Log notes from the call. Set follow-up with clear next step.', hsId:'206786679709' },
-  { customer:'Stephan Lucanic',   location:'Santa Rosa, CA',    rep:'Jonathan', date:'Wed 3/4',  duration:'~9 min',  rebate:'none',  status:'active',    statusLabel:'Active',       next:'Short check-in. Confirm deal status and schedule substantive follow-up.', hsId:'205359822509' },
-  { customer:'Francine Farrell',  location:'Loomis, CA',        rep:'Jonathan', date:'Tue 3/3',  duration:'~14 min', rebate:'none',  status:'active',    statusLabel:'Active',       next:'14-min call, no recap. Log notes and determine stage.', hsId:'206073024396' },
-  { customer:'Usha Bettadapur',   location:'Bay Area, CA',      rep:'Jonathan', date:'Wed 3/4',  duration:'~24 min', rebate:'ambig', status:'active',    statusLabel:'Active',       next:'⚠️ Also contacted by Shelby this week. Confirm rep ownership in HubSpot before next outreach.', hsId:'206799605795' },
-  { customer:'Leonard Moty',      location:'CA',                rep:'Jonathan', date:'Wed 3/4',  duration:'<1 min',  rebate:'none',  status:'stalled',   statusLabel:'Voicemail',    next:'Two very short calls. Try different time or email outreach.', hsId:'' },
-  { customer:'Lisamarie Kerley',  location:'Los Gatos, CA',     rep:'Jonathan', date:'Fri 3/6',  duration:'<1 min',  rebate:'none',  status:'stalled',   statusLabel:'Attempted',    next:'26-sec call. Status: ATTEMPTED_TO_CONTACT. Try again next week.', hsId:'' },
-  // VILMA
-  { customer:'Frank Hinthorne',   location:'Riverside area, CA',rep:'Vilma',    date:'Thu 3/5 + Fri 3/6', duration:'~93 min', rebate:'none', status:'nearclose', statusLabel:'Near Close', next:'Two sessions in 12 hours — 65 min + 28 min. No recap. Check in with Vilma on deal status and close date.', hsId:'207294270349' },
-  { customer:'Rigoberto Delgado', location:'Stockton, CA',      rep:'Vilma',    date:'Mon 3/2',  duration:'~29 min', rebate:'none',  status:'active',    statusLabel:'Active',       next:'Nearly 30-min consultation. No recap. Log notes and send proposal if not done.', hsId:'123471446380' },
-  { customer:'Ahmed Talha Khan',  location:'Peninsula, CA',     rep:'Vilma',    date:'Wed 3/4',  duration:'~34 min', rebate:'none',  status:'active',    statusLabel:'Active',       next:'34-min call, no recap. Follow up on next step — proposal or second call.', hsId:'206777062310' },
-  { customer:'Barbara Lilker',    location:'CA',                rep:'Vilma',    date:'Mon 3/2 + Fri 3/6', duration:'~20 min', rebate:'none', status:'active', statusLabel:'Active',  next:'Two contacts this week. Determine stage and set clear next step.', hsId:'139764859996' },
-  { customer:'Arnold Cruz',       location:'CA',                rep:'Vilma',    date:'Thu 3/5',  duration:'Missed',  rebate:'ambig', status:'stalled',   statusLabel:'Missed',       next:'🚨 Missed inbound. Warm lead — called in first. Callback Monday morning.', hsId:'' },
-  { customer:'David Hall',        location:'CA',                rep:'Vilma',    date:'Tue 3/3',  duration:'Missed',  rebate:'ambig', status:'stalled',   statusLabel:'Missed',       next:'🚨 Missed inbound. Callback Monday morning.', hsId:'' },
-  { customer:'YanPing Liang',     location:'CA',                rep:'Vilma',    date:'Tue 3/3',  duration:'Missed',  rebate:'ambig', status:'stalled',   statusLabel:'Missed',       next:'🚨 Missed inbound. Callback Monday morning.', hsId:'' },
-  { customer:'Hardik Parikh',     location:'Bay Area, CA',      rep:'Vilma',    date:'Mon 3/2',  duration:'<1 min',  rebate:'none',  status:'stalled',   statusLabel:'Voicemail',    next:'Two very short calls. Try email outreach.', hsId:'' },
-  { customer:'Pedro Velasco',     location:'Central Valley, CA',rep:'Vilma',    date:'Mon 3/2',  duration:'~3 min',  rebate:'none',  status:'active',    statusLabel:'Active',       next:'Brief callback. Determine if prospect is warm and schedule full consultation.', hsId:'' },
-  { customer:'Andrew Katcher',    location:'Bay Area, CA',      rep:'Vilma',    date:'Tue 3/3',  duration:'<1 min',  rebate:'none',  status:'stalled',   statusLabel:'Voicemail',    next:'Short call, likely voicemail. Follow up by email.', hsId:'' },
-  // MICHAEL
-  { customer:'Linda Oliver',      location:'CA',                rep:'Michael',  date:'Fri 3/6',  duration:'~4 min',  rebate:'sgip',  status:'active',    statusLabel:'Active',       next:"🚨 Update Linda's email in HubSpot. Govt-funded $64K project. Reassure 4-month install timeline.", hsId:'130145536847' },
-  { customer:'Michael Kutilek',   location:'CA',                rep:'Michael',  date:'Thu 3/5',  duration:'~5 min',  rebate:'none',  status:'agreement', statusLabel:'Agreement',    next:'Explained $500 buyout at year 6. Customer hesitant but considering. Follow up to confirm acceptance.', hsId:'197562364581' },
-  { customer:'BK Phan',           location:'CA',                rep:'Michael',  date:'Thu 3/5',  duration:'~2 min',  rebate:'sgip',  status:'active',    statusLabel:'Active',       next:'Application pending. Try texting Donna — not answering calls. BK watching email for approval status.', hsId:'160086678706' },
-  { customer:'Greg (+18312129017)',location:'Mountains, CA',    rep:'Michael',  date:'Thu 3/5',  duration:'~5 min',  rebate:'none',  status:'active',    statusLabel:'Active',       next:'Still gathering competing quotes. Follow up once Greg has more info. Discussed Franklin batteries + PPA.', hsId:'' },
-  { customer:'Christoph Maurath', location:'CA',                rep:'Michael',  date:'Wed 3/4',  duration:'~2 min',  rebate:'none',  status:'lost',      statusLabel:'Lost',         next:'Closed lost. On grid with water treatment plant — no outages. Not cost-justifiable. No further action.', hsId:'' },
-  { customer:'Gene Wang',         location:'CA',                rep:'Michael',  date:'Wed 3/4',  duration:'~2 min',  rebate:'none',  status:'lost',      statusLabel:'Lost',         next:'Closed lost. Cheaper competing quotes. Not interested in 10-year commitment. No further action.', hsId:'' },
-  { customer:'Martin Binesh',     location:'CA',                rep:'Michael',  date:'Tue 3/3',  duration:'~3 min',  rebate:'pge',   status:'agreement', statusLabel:'Agreement',    next:'🚨 Resend agreement. Sign now, delay site survey until PG&E CARE confirmation. Can cancel penalty-free.', hsId:'196901827247' },
-  { customer:'Roberto Eugenio',   location:'CA',                rep:'Michael',  date:'Tue 3/3',  duration:'~4 min',  rebate:'sgip',  status:'active',    statusLabel:'Active',       next:'PTO submission coordination with PG&E/Sunrun. Roberto to send contract docs. Loop in Noy.', hsId:'198003620762' },
-  { customer:'Heather Priest',    location:'CA',                rep:'Michael',  date:'Wed 3/4',  duration:'~26 min', rebate:'none',  status:'proposal',  statusLabel:'Proposal',     next:'Send battery proposal. Heather to discuss with husband and confirm.', hsId:'207005928027' },
-  { customer:'Charles Morris',    location:'CA',                rep:'Michael',  date:'Wed 3/4',  duration:'~2 min',  rebate:'none',  status:'lost',      statusLabel:'Lost',         next:'Closed lost. Cost too high, bill offset insufficient. Left door open. No further action.', hsId:'' },
-  { customer:'Nanda Doddapaneni', location:'Bay Area, CA',      rep:'Michael',  date:'Tue/Thu/Fri', duration:'<2 min', rebate:'none', status:'stalled',  statusLabel:'No Answer',    next:'4 calls, no answer. Try text or email before this contact goes stale.', hsId:'205071021392' },
-  { customer:'Amber Dunbar',      location:'CA',                rep:'Michael',  date:'Wed 3/4',  duration:'<1 min',  rebate:'none',  status:'stalled',   statusLabel:'Voicemail',    next:'Two short calls. Try different outreach method.', hsId:'' },
-  { customer:'Gordon Fang',       location:'CA',                rep:'Michael',  date:'Wed 3/4',  duration:'<1 min',  rebate:'none',  status:'stalled',   statusLabel:'Voicemail',    next:'Short call, voicemail. Follow up by email.', hsId:'' },
-  { customer:'Daniel Warner',     location:'CA',                rep:'Michael',  date:'Wed 3/4',  duration:'<1 min',  rebate:'none',  status:'stalled',   statusLabel:'Voicemail',    next:'Short call, voicemail. Follow up by email.', hsId:'' },
-  // SHELBY
-  { customer:'Usha Bettadapur',   location:'Bay Area, CA',      rep:'Shelby',   date:'Tue 3/3 + Wed 3/4', duration:'~96 min', rebate:'ambig', status:'nearclose', statusLabel:'Near Close', next:'⚠️ 74-min inbound Tue + 22-min outbound Wed. Also contacted by Jonathan. Confirm ownership. High-priority deal.', hsId:'206799605795' },
-  { customer:'Cipriano Ventura',  location:'CA',                rep:'Shelby',   date:'Mon 3/2 + Tue 3/3', duration:'~47 min', rebate:'none',  status:'active',    statusLabel:'Active',     next:'Two sessions ~47 min total. Determine stage and set proposal or close timeline.', hsId:'205932884650' },
-  { customer:'Robert Panlasigue', location:'CA',                rep:'Shelby',   date:'Thu 3/5',  duration:'~33 min', rebate:'none',  status:'active',    statusLabel:'Active',       next:'1.3-min first call + 32-min substantive call. Send proposal if not done.', hsId:'207120076848' },
-  { customer:'Jeffrey Holloman',  location:'CA',                rep:'Shelby',   date:'Wed 3/4',  duration:'~16 min', rebate:'none',  status:'active',    statusLabel:'Active',       next:'15-min call. Determine stage and next step.', hsId:'206586629996' },
-  { customer:'Paul Goodman',      location:'Monterey, CA',      rep:'Shelby',   date:'Mon 3/2',  duration:'~9 min',  rebate:'none',  status:'active',    statusLabel:'Active',       next:'Late-night inbound. Follow up during business hours to move forward.', hsId:'206527451925' },
-  { customer:'Angelina Patino',   location:'CA',                rep:'Shelby',   date:'Tue 3/3',  duration:'<1 min',  rebate:'none',  status:'stalled',   statusLabel:'Brief',        next:'26-sec inbound. Unclear context. Log and follow up.', hsId:'' },
-  { customer:'Andrea Calderon',   location:'CA',                rep:'Shelby',   date:'Tue 3/3',  duration:'~4 min',  rebate:'none',  status:'active',    statusLabel:'Active',       next:'3.5-min call. Determine interest level and next step.', hsId:'' },
-  { customer:'Tommy Ingram',      location:'CA',                rep:'Shelby',   date:'Tue 3/3',  duration:'<1 min',  rebate:'none',  status:'stalled',   statusLabel:'Voicemail',    next:'Two very short calls. Try email outreach.', hsId:'' },
-  { customer:'Sarah Gilchrist',   location:'CA',                rep:'Shelby',   date:'Fri 3/6',  duration:'~1 min',  rebate:'none',  status:'stalled',   statusLabel:'Attempted',    next:'Two brief Friday calls. Try again Monday.', hsId:'' },
-  { customer:'Billy Jay Nichols', location:'CA',                rep:'Shelby',   date:'Wed 3/4',  duration:'~2 min',  rebate:'none',  status:'active',    statusLabel:'Active',       next:'Left voicemail, Billy called back briefly. Set proper follow-up call.', hsId:'' },
-  { customer:'Heriberto Sanchez', location:'CA',                rep:'Shelby',   date:'Tue 3/3',  duration:'Missed',  rebate:'ambig', status:'stalled',   statusLabel:'Missed',       next:'Missed inbound. Callback needed.', hsId:'' },
-  { customer:'+13109805550 (Unknown)', location:'Unknown',      rep:'Shelby',   date:'Fri 3/6',  duration:'~15 min', rebate:'ambig', status:'active',    statusLabel:'Active',       next:'🚨 15-min call, identity unknown. ID caller and create/update HubSpot contact.', hsId:'' },
-  // DARREN
-  { customer:'Billy Tinsley',     location:'Bay Area, CA',      rep:'Darren',   date:'Mon 3/2',  duration:'~89 min', rebate:'none',  status:'signed',    statusLabel:'Likely Signed', next:'DocuSign completed. Confirm: (1) site survey within 5 days, (2) PDF to Billy, (3) 5-yr extension cost info.', hsId:'153191380616' },
-  { customer:'George Martin',     location:'Bay Area, CA',      rep:'Darren',   date:'Mon 3/2',  duration:'~46 min', rebate:'sgip',  status:'agreement', statusLabel:'Awaiting Sign', next:"Consulting wife. DocuSign resent. Follow up early this week — ask if he's had a chance to review.", hsId:'203664289073' },
-  { customer:'Danny Powell',      location:'Bay Area, CA',      rep:'Darren',   date:'Tue 3/3 + Fri 3/6', duration:'~65 min', rebate:'none', status:'proposal', statusLabel:'Proposal', next:'Send 120% offset proposal. Clarify production estimate discrepancy. Confirm monitoring app details.', hsId:'206799307120' },
-  { customer:'Roger Lake',        location:'Pleasanton, CA',    rep:'Darren',   date:'Mon 3/2 + Wed 3/4', duration:'~62 min', rebate:'pge',  status:'active',    statusLabel:'Active',     next:'🚨 Send rebate status report by Monday. Roger to send utility bill + solar plans. Follow up call Monday.', hsId:'205797897864' },
-  { customer:'Joe Barrios',       location:'CA',                rep:'Darren',   date:'Wed 3/4',  duration:'<1 min',  rebate:'none',  status:'nurture',   statusLabel:'Nurture',      next:"Joe was sick. Check back in next week when he's feeling better.", hsId:'204284132510' },
-  { customer:'Jim Lewis',         location:'CA',                rep:'Darren',   date:'Tue 3/3',  duration:'~2 min',  rebate:'none',  status:'active',    statusLabel:'Active',       next:"Sent email for utility bill. Waiting on Jim's response. Follow up if no reply by Wed.", hsId:'196283598208' },
-  { customer:'Doug Ayers',        location:'CA',                rep:'Darren',   date:'Tue 3/3',  duration:'~1 min',  rebate:'none',  status:'nurture',   statusLabel:'Nurture',      next:'Building new house, 2–3 months from moving in. Set calendar reminder to reconnect in ~10 weeks.', hsId:'157874804114' },
-  { customer:'Ernest Pruneda',    location:'CA',                rep:'Darren',   date:'Mon 3/2',  duration:'<1 min',  rebate:'none',  status:'stalled',   statusLabel:'Voicemail',    next:'Two short calls. Try email outreach.', hsId:'' },
-  { customer:'Darren (Coaching w/ Jonathan)', location:'Internal', rep:'Darren', date:'Mon 3/2', duration:'~33 min', rebate:'none',  status:'coaching',  statusLabel:'Coaching',     next:'Jonathan joined live customer call. Debrief on ownership model + objection handling. Ongoing.', hsId:'' },
-];
-
-// ── RENDER ──
-let currentFilter = 'all';
-let currentSearch = '';
-let sortCol = '';
-let sortDir = 1;
-
-function getStatusClass(s) {
-  const m = { signed:'s-signed', nearclose:'s-nearclose', proposal:'s-proposal', agreement:'s-agreement', active:'s-active', stalled:'s-stalled', lost:'s-lost', nurture:'s-nurture', coaching:'s-coaching' };
-  return m[s] || 's-active';
-}
-function getRebadge(r) {
-  if (r==='sgip')  return '<span class="rebate-badge rb-sgip">SGIP</span>';
-  if (r==='pge')   return '<span class="rebate-badge rb-pge">PG&amp;E</span>';
-  if (r==='ambig') return '<span class="rebate-badge rb-amb">?</span>';
-  return '<span class="rebate-badge rb-none">None</span>';
-}
-
-function renderTable() {
-  let data = [...MEETINGS];
-
-  // filter by rep/rebate
-  if (currentFilter !== 'all') {
-    if (['Ezra','Jonathan','Vilma','Michael','Shelby','Darren'].includes(currentFilter)) {
-      data = data.filter(m => m.rep === currentFilter);
-    } else if (currentFilter === 'sgip') {
-      data = data.filter(m => m.rebate === 'sgip');
-    } else if (currentFilter === 'pge') {
-      data = data.filter(m => m.rebate === 'pge');
-    } else if (currentFilter === 'none') {
-      data = data.filter(m => m.rebate === 'none');
-    }
-  }
-
-  // search
-  if (currentSearch) {
-    const q = currentSearch.toLowerCase();
-    data = data.filter(m =>
-      m.customer.toLowerCase().includes(q) ||
-      m.rep.toLowerCase().includes(q) ||
-      m.next.toLowerCase().includes(q) ||
-      m.statusLabel.toLowerCase().includes(q) ||
-      (m.location||'').toLowerCase().includes(q)
-    );
-  }
-
-  // sort
-  if (sortCol) {
-    data.sort((a, b) => {
-      let av = a[sortCol] || '', bv = b[sortCol] || '';
-      return av.localeCompare(bv) * sortDir;
-    });
-  }
-
-  const tbody = document.getElementById('mtg-tbody');
-  const noRes = document.getElementById('no-results');
-  document.getElementById('mtg-count-label').textContent = data.length + ' of ' + MEETINGS.length + ' meetings';
-
-  if (data.length === 0) {
-    tbody.innerHTML = '';
-    noRes.style.display = 'block';
-    return;
-  }
-  noRes.style.display = 'none';
-
-  tbody.innerHTML = data.map(function(m) {
-    var nameHtml = m.hsId
-      ? '<a href="' + BASE + m.hsId + '" target="_blank" rel="noopener">' + m.customer + '</a>'
-      : m.customer;
-    return '<tr data-rep="' + m.rep + '" data-rebate="' + m.rebate + '">'
-      + '<td>'
-      + '<div class="td-customer">' + nameHtml + getRebadge(m.rebate) + '</div>'
-      + '<div class="td-location">' + m.location + '</div>'
-      + '</td>'
-      + '<td class="td-rep">' + m.rep + '</td>'
-      + '<td class="td-date">' + m.date + '</td>'
-      + '<td class="td-duration">' + m.duration + '</td>'
-      + '<td>' + getRebadge(m.rebate) + '</td>'
-      + '<td><span class="status-badge ' + getStatusClass(m.status) + '">' + m.statusLabel + '</span></td>'
-      + '<td class="td-next">' + m.next + '</td>'
-      + '</tr>';
-  }).join('');
-}
-
-function filterMeetings(f, btn) {
-  currentFilter = f;
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  renderTable();
-}
-
-function searchMeetings(q) {
-  currentSearch = q;
-  renderTable();
-}
-
-function sortTable(col) {
-  if (sortCol === col) sortDir *= -1; else { sortCol = col; sortDir = 1; }
-  document.querySelectorAll('.mtg-table th').forEach(th => th.classList.remove('sorted'));
-  renderTable();
-}
-
-// Init
-document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('cnt-all').textContent = '(' + MEETINGS.length + ')';
-  renderTable();
-});
 </script>
 </body>
 </html>
