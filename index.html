@@ -75,6 +75,18 @@
   }
   .tab:hover { color: var(--text); }
   .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+  .tab-group-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 0 8px;
+    display: flex;
+    align-items: center;
+    border-right: 1px solid var(--border);
+  }
+
 
   .content { display: none; padding: 24px 32px; max-width: 100%; overflow-x: hidden; }
   .content.active { display: block; }
@@ -370,11 +382,13 @@
 
 <div class="header">
   <h1>HAVEN ENERGY // CALL INTELLIGENCE</h1>
-  <div class="subtitle">Week of Mar 2–6, 2026 · hs_call_summary field</div>
+  <div class="subtitle">Feb 2 – Mar 6, 2026 · Calendar + HubSpot</div>
 </div>
 
-<div class="tabs">
-  <div class="tab active" onclick="switchTab('overview')">Overview</div>
+<div class="tabs" style="flex-wrap:wrap">
+  <div class="tab-group-label">Mar 2–6 (HubSpot)</div>
+  <div class="tab active" onclick="switchTab('summary')">Summary</div>
+  <div class="tab" onclick="switchTab('overview')">Overview</div>
   <div class="tab" onclick="switchTab('ezra')">Ezra</div>
   <div class="tab" onclick="switchTab('jonathan')">Jonathan</div>
   <div class="tab" onclick="switchTab('vilma')">Vilma</div>
@@ -382,10 +396,292 @@
   <div class="tab" onclick="switchTab('shelby')">Shelby</div>
   <div class="tab" onclick="switchTab('darren')">Darren</div>
   <div class="tab" onclick="switchTab('insights')">Insights</div>
+  <div class="tab-group-label" style="margin-left:12px">February (Calendar)</div>
+  <div class="tab" onclick="switchTab('feb-ezra')">Ezra Feb</div>
+  <div class="tab" onclick="switchTab('feb-jonathan')">Jonathan Feb</div>
+  <div class="tab" onclick="switchTab('feb-vilma')">Vilma Feb</div>
+  <div class="tab" onclick="switchTab('feb-michael')">Michael Feb</div>
+  <div class="tab" onclick="switchTab('feb-shelby')">Shelby Feb</div>
+</div>
+
+<div id="tab-summary" class="content active">
+<div class="section-title">Weekly Meeting Volume — Feb 2 to Mar 6</div>
+  <p style="color:var(--muted);font-size:12px;margin-bottom:16px">Source: Google Calendar (Feb data) + HubSpot calls (Mar 2–6). Darren's calendar was not accessible; Mar 2–6 uses HubSpot data for all reps.</p>
+  
+  <table style="width:100%;border-collapse:collapse;font-family:'IBM Plex Mono',monospace;font-size:12px;margin-bottom:32px">
+    <thead>
+      <tr style="border-bottom:2px solid var(--border)">
+        <th style="text-align:left;padding:10px 12px;color:var(--muted);font-weight:500">REP</th>
+        <th style="text-align:center;padding:10px 12px;color:var(--muted);font-weight:500">Feb 2–6</th>
+        <th style="text-align:center;padding:10px 12px;color:var(--muted);font-weight:500">Feb 9–13</th>
+        <th style="text-align:center;padding:10px 12px;color:var(--muted);font-weight:500">Feb 16–20</th>
+        <th style="text-align:center;padding:10px 12px;color:var(--muted);font-weight:500">Feb 23–27</th>
+        <th style="text-align:center;padding:10px 12px;color:var(--muted);font-weight:500">Mar 2–6</th>
+        <th style="text-align:center;padding:10px 12px;color:var(--muted);font-weight:500">TOTAL</th>
+        <th style="text-align:center;padding:10px 12px;color:var(--muted);font-weight:500">TALK TIME</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom:1px solid var(--border)">
+        <td style="padding:10px 12px;font-weight:600;color:#a78bfa">Ezra</td>
+        <td style="text-align:center;padding:10px 12px;background:#1a2e1a;border-radius:4px"><span style="color:var(--text);font-weight:500">13</span><br><span style="color:var(--muted);font-size:10px">11h</span></td>
+        <td style="text-align:center;padding:10px 12px;background:#1a2535;border-radius:4px"><span style="color:var(--text);font-weight:500">10</span><br><span style="color:var(--muted);font-size:10px">7h 30m</span></td>
+        <td style="text-align:center;padding:10px 12px;background:#1a2e1a;border-radius:4px"><span style="color:var(--text);font-weight:500">15</span><br><span style="color:var(--muted);font-size:10px">9h 30m</span></td>
+        <td style="text-align:center;padding:10px 12px;background:#1e3a1e;border-radius:4px"><span style="color:var(--text);font-weight:500">22</span><br><span style="color:var(--muted);font-size:10px">13h 30m</span></td>
+        <td style="text-align:center;padding:10px 12px;background:#1a2535;border-radius:4px;border-left:2px solid var(--accent)"><span style="color:var(--accent);font-weight:500">8</span><br><span style="color:var(--muted);font-size:10px">4h 30m</span></td>
+        <td style="text-align:center;padding:10px 12px;font-weight:600;color:var(--text)">68</td>
+        <td style="text-align:center;padding:10px 12px;color:var(--green)">46h</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border)">
+        <td style="padding:10px 12px;font-weight:600;color:#4f8ef7">Jonathan</td>
+        <td style="text-align:center;padding:10px 12px;background:#1a2535;border-radius:4px"><span style="color:var(--text);font-weight:500">6</span><br><span style="color:var(--muted);font-size:10px">5h 30m</span></td>
+        <td style="text-align:center;padding:10px 12px;background:#1a2535;border-radius:4px"><span style="color:var(--text);font-weight:500">5</span><br><span style="color:var(--muted);font-size:10px">5h</span></td>
+        <td style="text-align:center;padding:10px 12px;background:#1a2535;border-radius:4px"><span style="color:var(--text);font-weight:500">10</span><br><span style="color:var(--muted);font-size:10px">6h 45m</span></td>
+        <td style="text-align:center;padding:10px 12px;background:#1a2e1a;border-radius:4px"><span style="color:var(--text);font-weight:500">11</span><br><span style="color:var(--muted);font-size:10px">7h 30m</span></td>
+        <td style="text-align:center;padding:10px 12px;background:#1a2e1a;border-radius:4px;border-left:2px solid var(--accent)"><span style="color:var(--accent);font-weight:500">14</span><br><span style="color:var(--muted);font-size:10px">8h</span></td>
+        <td style="text-align:center;padding:10px 12px;font-weight:600;color:var(--text)">46</td>
+        <td style="text-align:center;padding:10px 12px;color:var(--green)">32h 45m</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border)">
+        <td style="padding:10px 12px;font-weight:600;color:#3ecf8e">Vilma</td>
+        <td style="text-align:center;padding:10px 12px;background:#1a2e1a;border-radius:4px"><span style="color:var(--text);font-weight:500">11</span><br><span style="color:var(--muted);font-size:10px">8h</span></td>
+        <td style="text-align:center;padding:10px 12px;background:#1a2535;border-radius:4px"><span style="color:var(--text);font-weight:500">8</span><br><span style="color:var(--muted);font-size:10px">6h 45m</span></td>
+        <td style="text-align:center;padding:10px 12px;background:#1a2e1a;border-radius:4px"><span style="color:var(--text);font-weight:500">11</span><br><span style="color:var(--muted);font-size:10px">8h</span></td>
+        <td style="text-align:center;padding:10px 12px;background:#1a2e1a;border-radius:4px"><span style="color:var(--text);font-weight:500">13</span><br><span style="color:var(--muted);font-size:10px">8h 30m</span></td>
+        <td style="text-align:center;padding:10px 12px;background:#1a2535;border-radius:4px;border-left:2px solid var(--accent)"><span style="color:var(--accent);font-weight:500">9</span><br><span style="color:var(--muted);font-size:10px">5h 15m</span></td>
+        <td style="text-align:center;padding:10px 12px;font-weight:600;color:var(--text)">52</td>
+        <td style="text-align:center;padding:10px 12px;color:var(--green)">36h 30m</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border)">
+        <td style="padding:10px 12px;font-weight:600;color:#f5c842">Michael</td>
+        <td style="text-align:center;padding:10px 12px;background:#1a2535;border-radius:4px"><span style="color:var(--text);font-weight:500">10</span><br><span style="color:var(--muted);font-size:10px">7h 30m</span></td>
+        <td style="text-align:center;padding:10px 12px;background:#1a2535;border-radius:4px"><span style="color:var(--text);font-weight:500">10</span><br><span style="color:var(--muted);font-size:10px">7h 30m</span></td>
+        <td style="text-align:center;padding:10px 12px;background:#1a2e1a;border-radius:4px"><span style="color:var(--text);font-weight:500">12</span><br><span style="color:var(--muted);font-size:10px">8h</span></td>
+        <td style="text-align:center;padding:10px 12px;background:#1e3a1e;border-radius:4px"><span style="color:var(--text);font-weight:500">19</span><br><span style="color:var(--muted);font-size:10px">11h 30m</span></td>
+        <td style="text-align:center;padding:10px 12px;background:#1a2e1a;border-radius:4px;border-left:2px solid var(--accent)"><span style="color:var(--accent);font-weight:500">14</span><br><span style="color:var(--muted);font-size:10px">7h 45m</span></td>
+        <td style="text-align:center;padding:10px 12px;font-weight:600;color:var(--text)">65</td>
+        <td style="text-align:center;padding:10px 12px;color:var(--green)">42h 15m</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border)">
+        <td style="padding:10px 12px;font-weight:600;color:#f08c3e">Shelby</td>
+        <td style="text-align:center;padding:10px 12px;background:#1a2e1a;border-radius:4px"><span style="color:var(--text);font-weight:500">11</span><br><span style="color:var(--muted);font-size:10px">8h</span></td>
+        <td style="text-align:center;padding:10px 12px;background:#1a2535;border-radius:4px"><span style="color:var(--text);font-weight:500">10</span><br><span style="color:var(--muted);font-size:10px">7h 30m</span></td>
+        <td style="text-align:center;padding:10px 12px;background:#1a2535;border-radius:4px"><span style="color:var(--text);font-weight:500">9</span><br><span style="color:var(--muted);font-size:10px">6h 30m</span></td>
+        <td style="text-align:center;padding:10px 12px;background:#1a2e1a;border-radius:4px"><span style="color:var(--text);font-weight:500">13</span><br><span style="color:var(--muted);font-size:10px">9h</span></td>
+        <td style="text-align:center;padding:10px 12px;background:#1a2535;border-radius:4px;border-left:2px solid var(--accent)"><span style="color:var(--accent);font-weight:500">10</span><br><span style="color:var(--muted);font-size:10px">7h</span></td>
+        <td style="text-align:center;padding:10px 12px;font-weight:600;color:var(--text)">53</td>
+        <td style="text-align:center;padding:10px 12px;color:var(--green)">38h</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border)">
+        <td style="padding:10px 12px;font-weight:600;color:#f05a5a">Darren</td>
+        <td style="text-align:center;padding:10px 12px;color:var(--muted)">—</td>
+        <td style="text-align:center;padding:10px 12px;color:var(--muted)">—</td>
+        <td style="text-align:center;padding:10px 12px;color:var(--muted)">—</td>
+        <td style="text-align:center;padding:10px 12px;color:var(--muted)">—</td>
+        <td style="text-align:center;padding:10px 12px;background:#1a2535;border-radius:4px;border-left:2px solid var(--accent)"><span style="color:var(--accent);font-weight:500">6</span><br><span style="color:var(--muted);font-size:10px">5h</span></td>
+        <td style="text-align:center;padding:10px 12px;font-weight:600;color:var(--text)">6+</td>
+        <td style="text-align:center;padding:10px 12px;color:var(--green)">5h</td>
+      </tr>
+      <tr style="border-top:2px solid var(--border);background:var(--surface)">
+        <td style="padding:10px 12px;font-weight:600;color:var(--accent)">TEAM</td>
+        <td style="text-align:center;padding:10px 12px;font-weight:600;color:var(--text)">51<br><span style="color:var(--muted);font-size:10px">40h</span></td>
+        <td style="text-align:center;padding:10px 12px;font-weight:600;color:var(--text)">43<br><span style="color:var(--muted);font-size:10px">34h 15m</span></td>
+        <td style="text-align:center;padding:10px 12px;font-weight:600;color:var(--text)">57<br><span style="color:var(--muted);font-size:10px">38h 45m</span></td>
+        <td style="text-align:center;padding:10px 12px;font-weight:600;color:var(--text)">78<br><span style="color:var(--muted);font-size:10px">50h</span></td>
+        <td style="text-align:center;padding:10px 12px;font-weight:600;color:var(--accent);border-left:2px solid var(--accent)">61<br><span style="color:var(--muted);font-size:10px">37h 30m</span></td>
+        <td style="text-align:center;padding:10px 12px;font-weight:700;color:var(--accent)">290</td>
+        <td style="text-align:center;padding:10px 12px;font-weight:600;color:var(--green)">200h 30m</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="section-title">Volume Trend by Rep</div>
+  <div class="grid-3" style="margin-bottom:32px">
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title" style="color:#a78bfa">Ezra</div>
+      <div style="font-size:12px;color:var(--muted)">60 mtgs in Feb</div>
+    </div>
+    <div style="display:flex;align-items:flex-end;gap:6px;padding:8px 0;height:90px">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+  <div style="font-size:10px;color:var(--muted)">13</div>
+  <div style="width:28px;height:35px;background:#a78bfa;border-radius:3px 3px 0 0;opacity:0.7"></div>
+  <div style="font-size:9px;color:var(--muted);white-space:nowrap">F2–6</div>
+</div><div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+  <div style="font-size:10px;color:var(--muted)">10</div>
+  <div style="width:28px;height:27px;background:#a78bfa;border-radius:3px 3px 0 0;opacity:0.7"></div>
+  <div style="font-size:9px;color:var(--muted);white-space:nowrap">F9–13</div>
+</div><div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+  <div style="font-size:10px;color:var(--muted)">15</div>
+  <div style="width:28px;height:40px;background:#a78bfa;border-radius:3px 3px 0 0;opacity:0.7"></div>
+  <div style="font-size:9px;color:var(--muted);white-space:nowrap">F16–20</div>
+</div><div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+  <div style="font-size:10px;color:var(--muted)">22</div>
+  <div style="width:28px;height:60px;background:#a78bfa;border-radius:3px 3px 0 0;opacity:0.7"></div>
+  <div style="font-size:9px;color:var(--muted);white-space:nowrap">F23–27</div>
+</div><div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+  <div style="font-size:10px;color:var(--muted)">8</div>
+  <div style="width:28px;height:21px;background:#4f8ef7;border-radius:3px 3px 0 0;opacity:0.9"></div>
+  <div style="font-size:9px;color:var(--muted);white-space:nowrap">M2–6</div>
+</div>
+    </div>
+    <div style="font-size:11px;color:var(--muted);padding-top:8px;border-top:1px solid var(--border)">
+      Trend <span style="color:var(--green)">↑</span> · Avg 15/wk Feb · Mar 2–6: <span style="color:var(--accent)">8</span>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title" style="color:#4f8ef7">Jonathan</div>
+      <div style="font-size:12px;color:var(--muted)">32 mtgs in Feb</div>
+    </div>
+    <div style="display:flex;align-items:flex-end;gap:6px;padding:8px 0;height:90px">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+  <div style="font-size:10px;color:var(--muted)">6</div>
+  <div style="width:28px;height:25px;background:#4f8ef7;border-radius:3px 3px 0 0;opacity:0.7"></div>
+  <div style="font-size:9px;color:var(--muted);white-space:nowrap">F2–6</div>
+</div><div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+  <div style="font-size:10px;color:var(--muted)">5</div>
+  <div style="width:28px;height:21px;background:#4f8ef7;border-radius:3px 3px 0 0;opacity:0.7"></div>
+  <div style="font-size:9px;color:var(--muted);white-space:nowrap">F9–13</div>
+</div><div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+  <div style="font-size:10px;color:var(--muted)">10</div>
+  <div style="width:28px;height:42px;background:#4f8ef7;border-radius:3px 3px 0 0;opacity:0.7"></div>
+  <div style="font-size:9px;color:var(--muted);white-space:nowrap">F16–20</div>
+</div><div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+  <div style="font-size:10px;color:var(--muted)">11</div>
+  <div style="width:28px;height:47px;background:#4f8ef7;border-radius:3px 3px 0 0;opacity:0.7"></div>
+  <div style="font-size:9px;color:var(--muted);white-space:nowrap">F23–27</div>
+</div><div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+  <div style="font-size:10px;color:var(--muted)">14</div>
+  <div style="width:28px;height:60px;background:#4f8ef7;border-radius:3px 3px 0 0;opacity:0.9"></div>
+  <div style="font-size:9px;color:var(--muted);white-space:nowrap">M2–6</div>
+</div>
+    </div>
+    <div style="font-size:11px;color:var(--muted);padding-top:8px;border-top:1px solid var(--border)">
+      Trend <span style="color:var(--green)">↑</span> · Avg 8/wk Feb · Mar 2–6: <span style="color:var(--accent)">14</span>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title" style="color:#3ecf8e">Vilma</div>
+      <div style="font-size:12px;color:var(--muted)">43 mtgs in Feb</div>
+    </div>
+    <div style="display:flex;align-items:flex-end;gap:6px;padding:8px 0;height:90px">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+  <div style="font-size:10px;color:var(--muted)">11</div>
+  <div style="width:28px;height:50px;background:#3ecf8e;border-radius:3px 3px 0 0;opacity:0.7"></div>
+  <div style="font-size:9px;color:var(--muted);white-space:nowrap">F2–6</div>
+</div><div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+  <div style="font-size:10px;color:var(--muted)">8</div>
+  <div style="width:28px;height:36px;background:#3ecf8e;border-radius:3px 3px 0 0;opacity:0.7"></div>
+  <div style="font-size:9px;color:var(--muted);white-space:nowrap">F9–13</div>
+</div><div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+  <div style="font-size:10px;color:var(--muted)">11</div>
+  <div style="width:28px;height:50px;background:#3ecf8e;border-radius:3px 3px 0 0;opacity:0.7"></div>
+  <div style="font-size:9px;color:var(--muted);white-space:nowrap">F16–20</div>
+</div><div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+  <div style="font-size:10px;color:var(--muted)">13</div>
+  <div style="width:28px;height:60px;background:#3ecf8e;border-radius:3px 3px 0 0;opacity:0.7"></div>
+  <div style="font-size:9px;color:var(--muted);white-space:nowrap">F23–27</div>
+</div><div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+  <div style="font-size:10px;color:var(--muted)">9</div>
+  <div style="width:28px;height:41px;background:#4f8ef7;border-radius:3px 3px 0 0;opacity:0.9"></div>
+  <div style="font-size:9px;color:var(--muted);white-space:nowrap">M2–6</div>
+</div>
+    </div>
+    <div style="font-size:11px;color:var(--muted);padding-top:8px;border-top:1px solid var(--border)">
+      Trend <span style="color:var(--green)">↑</span> · Avg 10/wk Feb · Mar 2–6: <span style="color:var(--accent)">9</span>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title" style="color:#f5c842">Michael</div>
+      <div style="font-size:12px;color:var(--muted)">51 mtgs in Feb</div>
+    </div>
+    <div style="display:flex;align-items:flex-end;gap:6px;padding:8px 0;height:90px">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+  <div style="font-size:10px;color:var(--muted)">10</div>
+  <div style="width:28px;height:31px;background:#f5c842;border-radius:3px 3px 0 0;opacity:0.7"></div>
+  <div style="font-size:9px;color:var(--muted);white-space:nowrap">F2–6</div>
+</div><div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+  <div style="font-size:10px;color:var(--muted)">10</div>
+  <div style="width:28px;height:31px;background:#f5c842;border-radius:3px 3px 0 0;opacity:0.7"></div>
+  <div style="font-size:9px;color:var(--muted);white-space:nowrap">F9–13</div>
+</div><div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+  <div style="font-size:10px;color:var(--muted)">12</div>
+  <div style="width:28px;height:37px;background:#f5c842;border-radius:3px 3px 0 0;opacity:0.7"></div>
+  <div style="font-size:9px;color:var(--muted);white-space:nowrap">F16–20</div>
+</div><div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+  <div style="font-size:10px;color:var(--muted)">19</div>
+  <div style="width:28px;height:60px;background:#f5c842;border-radius:3px 3px 0 0;opacity:0.7"></div>
+  <div style="font-size:9px;color:var(--muted);white-space:nowrap">F23–27</div>
+</div><div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+  <div style="font-size:10px;color:var(--muted)">14</div>
+  <div style="width:28px;height:44px;background:#4f8ef7;border-radius:3px 3px 0 0;opacity:0.9"></div>
+  <div style="font-size:9px;color:var(--muted);white-space:nowrap">M2–6</div>
+</div>
+    </div>
+    <div style="font-size:11px;color:var(--muted);padding-top:8px;border-top:1px solid var(--border)">
+      Trend <span style="color:var(--green)">↑</span> · Avg 12/wk Feb · Mar 2–6: <span style="color:var(--accent)">14</span>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title" style="color:#f08c3e">Shelby</div>
+      <div style="font-size:12px;color:var(--muted)">43 mtgs in Feb</div>
+    </div>
+    <div style="display:flex;align-items:flex-end;gap:6px;padding:8px 0;height:90px">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+  <div style="font-size:10px;color:var(--muted)">11</div>
+  <div style="width:28px;height:50px;background:#f08c3e;border-radius:3px 3px 0 0;opacity:0.7"></div>
+  <div style="font-size:9px;color:var(--muted);white-space:nowrap">F2–6</div>
+</div><div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+  <div style="font-size:10px;color:var(--muted)">10</div>
+  <div style="width:28px;height:46px;background:#f08c3e;border-radius:3px 3px 0 0;opacity:0.7"></div>
+  <div style="font-size:9px;color:var(--muted);white-space:nowrap">F9–13</div>
+</div><div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+  <div style="font-size:10px;color:var(--muted)">9</div>
+  <div style="width:28px;height:41px;background:#f08c3e;border-radius:3px 3px 0 0;opacity:0.7"></div>
+  <div style="font-size:9px;color:var(--muted);white-space:nowrap">F16–20</div>
+</div><div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+  <div style="font-size:10px;color:var(--muted)">13</div>
+  <div style="width:28px;height:60px;background:#f08c3e;border-radius:3px 3px 0 0;opacity:0.7"></div>
+  <div style="font-size:9px;color:var(--muted);white-space:nowrap">F23–27</div>
+</div><div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+  <div style="font-size:10px;color:var(--muted)">10</div>
+  <div style="width:28px;height:46px;background:#4f8ef7;border-radius:3px 3px 0 0;opacity:0.9"></div>
+  <div style="font-size:9px;color:var(--muted);white-space:nowrap">M2–6</div>
+</div>
+    </div>
+    <div style="font-size:11px;color:var(--muted);padding-top:8px;border-top:1px solid var(--border)">
+      Trend <span style="color:var(--green)">↑</span> · Avg 10/wk Feb · Mar 2–6: <span style="color:var(--accent)">10</span>
+    </div>
+  </div>
+  </div>
+
+  <div class="section-title">Key Observations</div>
+  <div class="grid" style="margin-bottom:24px">
+    <div class="insight-block">
+      <h3>📈 Volume Leaders</h3>
+      <p>Ezra led all reps in February with 60 customer meetings (~41.5h of talk time). Michael ran 51 meetings with consistent weekly cadence. Vilma and Shelby both held strong at 43 meetings each.</p>
+    </div>
+    <div class="insight-block">
+      <h3>📉 Volume Gap — Jonathan</h3>
+      <p>Jonathan logged 32 meetings in February — the lowest among all reps — likely reflecting time spent on customer journey work and internal improvements. His Mar 2–6 week (14 meetings) was his strongest single week, suggesting his pipeline was maturing toward the end of the period.</p>
+    </div>
+    <div class="insight-block">
+      <h3>🔥 Feb 23–27 Surge</h3>
+      <p>Nearly every rep saw their highest weekly volume in the final week of February. Ezra hit 22 meetings, Michael hit 19. This end-of-month push should be tracked against close rates to see if velocity actually converts.</p>
+    </div>
+    <div class="insight-block">
+      <h3>📊 Calendar vs. HubSpot (Mar 2–6)</h3>
+      <p>The Mar 2–6 data is sourced from HubSpot call logs while February data comes from Google Calendar. Jonathan's 14 HubSpot-logged calls that week vs. his ~8/week average in Feb suggests strong activity. Note: Darren's calendar was inaccessible — his Mar 2–6 HubSpot data is used instead.</p>
+    </div>
+  </div>
 </div>
 
 <!-- OVERVIEW -->
-<div id="tab-overview" class="content active">
+<div id="tab-overview" class="content">
   <div class="ai-banner">
     <strong>AI COVERAGE NOTE:</strong> hs_call_summary populating on ~60% of this week's substantive calls. AI recaps stored in <strong>hs_call_body</strong> for Darren &amp; Michael's lines (not hs_call_summary). Shelby and Vilma's lines have no AI recap at all — Dialpad AI not enabled for those reps.
   </div>
@@ -1264,11 +1560,1006 @@
   </div>
 </div>
 
+<div id="tab-feb-ezra" class="content">
+  <div class="rep-header">
+    <div class="rep-name" style="color:#a78bfa">Ezra Schroeder</div>
+    <div class="rep-stats">
+      <div class="rep-stat">Feb Total <span>60 meetings</span></div>
+      <div class="rep-stat">Talk time <span>~41h 30m</span></div>
+      <div class="rep-stat">Follow-ups <span>7</span></div>
+      <div class="rep-stat">Source <span style="color:var(--muted)">Google Calendar</span></div>
+    </div>
+  </div>
+  <div class="grid-3">
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Feb 2–6</div>
+      <div class="card-meta">
+        <span class="badge badge-rep">13 meetings</span>
+        <span class="badge" style="background:#1e2540;color:#8ba4e8">11h</span>
+      </div>
+    </div>
+    <div style="padding:4px 0">
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Follow Up - Surabhi</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h <span class="badge badge-rep" style="font-size:9px">FU</span></div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation: CA solar + battery rebate</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Follow Up - Terry and Tony</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h <span class="badge badge-rep" style="font-size:9px">FU</span></div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="color:var(--muted);font-size:11px;padding-top:6px">+4 more meetings</div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Feb 9–13</div>
+      <div class="card-meta">
+        <span class="badge badge-rep">10 meetings</span>
+        <span class="badge" style="background:#1e2540;color:#8ba4e8">7h 30m</span>
+      </div>
+    </div>
+    <div style="padding:4px 0">
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Terry Lord and Ezra Schroeder</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="color:var(--muted);font-size:11px;padding-top:6px">+1 more meetings</div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Feb 16–20</div>
+      <div class="card-meta">
+        <span class="badge badge-rep">15 meetings</span>
+        <span class="badge" style="background:#1e2540;color:#8ba4e8">9h 30m</span>
+      </div>
+    </div>
+    <div style="padding:4px 0">
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Terry Lord and Ezra Schroeder</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Follow Up - Phung Nguyen</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m <span class="badge badge-rep" style="font-size:9px">FU</span></div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Follow Up - Tony Vado</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m <span class="badge badge-rep" style="font-size:9px">FU</span></div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Call Phung Nguyen</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="color:var(--muted);font-size:11px;padding-top:6px">+6 more meetings</div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Feb 23–27</div>
+      <div class="card-meta">
+        <span class="badge badge-rep">22 meetings</span>
+        <span class="badge" style="background:#1e2540;color:#8ba4e8">13h 30m</span>
+      </div>
+    </div>
+    <div style="padding:4px 0">
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation: CA solar + battery </div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation: CA solar + battery </div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Call - Phung</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">JERRY ROBINETT and Ezra Schroeder</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Follow Up - Robert Moore</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m <span class="badge badge-rep" style="font-size:9px">FU</span></div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Call Zac Carrington</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="color:var(--muted);font-size:11px;padding-top:6px">+13 more meetings</div>
+    </div>
+  </div>
+  </div>
+</div>
+
+<div id="tab-feb-jonathan" class="content">
+  <div class="rep-header">
+    <div class="rep-name" style="color:#4f8ef7">Jonathan Messier</div>
+    <div class="rep-stats">
+      <div class="rep-stat">Feb Total <span>32 meetings</span></div>
+      <div class="rep-stat">Talk time <span>~24h 45m</span></div>
+      <div class="rep-stat">Follow-ups <span>0</span></div>
+      <div class="rep-stat">Source <span style="color:var(--muted)">Google Calendar</span></div>
+    </div>
+  </div>
+  <div class="grid-3">
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Feb 2–6</div>
+      <div class="card-meta">
+        <span class="badge badge-rep">6 meetings</span>
+        <span class="badge" style="background:#1e2540;color:#8ba4e8">5h 30m</span>
+      </div>
+    </div>
+    <div style="padding:4px 0">
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Mike Gallagher and Jonathan Messier</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Feb 9–13</div>
+      <div class="card-meta">
+        <span class="badge badge-rep">5 meetings</span>
+        <span class="badge" style="background:#1e2540;color:#8ba4e8">5h</span>
+      </div>
+    </div>
+    <div style="padding:4px 0">
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Feb 16–20</div>
+      <div class="card-meta">
+        <span class="badge badge-rep">10 meetings</span>
+        <span class="badge" style="background:#1e2540;color:#8ba4e8">6h 45m</span>
+      </div>
+    </div>
+    <div style="padding:4px 0">
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Dennis Oyler and Jonathan Messier</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Jonathan Messier and Keoni McKee</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">15m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="color:var(--muted);font-size:11px;padding-top:6px">+1 more meetings</div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Feb 23–27</div>
+      <div class="card-meta">
+        <span class="badge badge-rep">11 meetings</span>
+        <span class="badge" style="background:#1e2540;color:#8ba4e8">7h 30m</span>
+      </div>
+    </div>
+    <div style="padding:4px 0">
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="color:var(--muted);font-size:11px;padding-top:6px">+2 more meetings</div>
+    </div>
+  </div>
+  </div>
+</div>
+
+<div id="tab-feb-vilma" class="content">
+  <div class="rep-header">
+    <div class="rep-name" style="color:#3ecf8e">Vilma Vega</div>
+    <div class="rep-stats">
+      <div class="rep-stat">Feb Total <span>43 meetings</span></div>
+      <div class="rep-stat">Talk time <span>~31h 15m</span></div>
+      <div class="rep-stat">Follow-ups <span>8</span></div>
+      <div class="rep-stat">Source <span style="color:var(--muted)">Google Calendar</span></div>
+    </div>
+  </div>
+  <div class="grid-3">
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Feb 2–6</div>
+      <div class="card-meta">
+        <span class="badge badge-rep">11 meetings</span>
+        <span class="badge" style="background:#1e2540;color:#8ba4e8">8h</span>
+      </div>
+    </div>
+    <div style="padding:4px 0">
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Follow up with battery proposal </div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m <span class="badge badge-rep" style="font-size:9px">FU</span></div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Call-follow up </div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m <span class="badge badge-rep" style="font-size:9px">FU</span></div>
+    </div>
+    <div style="color:var(--muted);font-size:11px;padding-top:6px">+2 more meetings</div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Feb 9–13</div>
+      <div class="card-meta">
+        <span class="badge badge-rep">8 meetings</span>
+        <span class="badge" style="background:#1e2540;color:#8ba4e8">6h 45m</span>
+      </div>
+    </div>
+    <div style="padding:4px 0">
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Karl Ball agreement </div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Rigoberto </div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">15m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Feb 16–20</div>
+      <div class="card-meta">
+        <span class="badge badge-rep">11 meetings</span>
+        <span class="badge" style="background:#1e2540;color:#8ba4e8">8h</span>
+      </div>
+    </div>
+    <div style="padding:4px 0">
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Rigoberto SGIP follow up </div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m <span class="badge badge-rep" style="font-size:9px">FU</span></div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">CPA + Haven Energy consultation: CA solar + battery reb</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Follow up with battery</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m <span class="badge badge-rep" style="font-size:9px">FU</span></div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Follow up with Ball customer</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h <span class="badge badge-rep" style="font-size:9px">FU</span></div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="color:var(--muted);font-size:11px;padding-top:6px">+2 more meetings</div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Feb 23–27</div>
+      <div class="card-meta">
+        <span class="badge badge-rep">13 meetings</span>
+        <span class="badge" style="background:#1e2540;color:#8ba4e8">8h 30m</span>
+      </div>
+    </div>
+    <div style="padding:4px 0">
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Follow up with battery proposal </div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m <span class="badge badge-rep" style="font-size:9px">FU</span></div>
+    </div>
+    <div style="color:var(--muted);font-size:11px;padding-top:6px">+4 more meetings</div>
+    </div>
+  </div>
+  </div>
+</div>
+
+<div id="tab-feb-michael" class="content">
+  <div class="rep-header">
+    <div class="rep-name" style="color:#f5c842">Michael McClure</div>
+    <div class="rep-stats">
+      <div class="rep-stat">Feb Total <span>51 meetings</span></div>
+      <div class="rep-stat">Talk time <span>~34h 30m</span></div>
+      <div class="rep-stat">Follow-ups <span>6</span></div>
+      <div class="rep-stat">Source <span style="color:var(--muted)">Google Calendar</span></div>
+    </div>
+  </div>
+  <div class="grid-3">
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Feb 2–6</div>
+      <div class="card-meta">
+        <span class="badge badge-rep">10 meetings</span>
+        <span class="badge" style="background:#1e2540;color:#8ba4e8">7h 30m</span>
+      </div>
+    </div>
+    <div style="padding:4px 0">
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Roberto / Michael Follow-up Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m <span class="badge badge-rep" style="font-size:9px">FU</span></div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="color:var(--muted);font-size:11px;padding-top:6px">+1 more meetings</div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Feb 9–13</div>
+      <div class="card-meta">
+        <span class="badge badge-rep">10 meetings</span>
+        <span class="badge" style="background:#1e2540;color:#8ba4e8">7h 30m</span>
+      </div>
+    </div>
+    <div style="padding:4px 0">
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Joanne / Michael Follow-up Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m <span class="badge badge-rep" style="font-size:9px">FU</span></div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="color:var(--muted);font-size:11px;padding-top:6px">+1 more meetings</div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Feb 16–20</div>
+      <div class="card-meta">
+        <span class="badge badge-rep">12 meetings</span>
+        <span class="badge" style="background:#1e2540;color:#8ba4e8">8h</span>
+      </div>
+    </div>
+    <div style="padding:4px 0">
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation: CA solar + battery rebate</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="color:var(--muted);font-size:11px;padding-top:6px">+3 more meetings</div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Feb 23–27</div>
+      <div class="card-meta">
+        <span class="badge badge-rep">19 meetings</span>
+        <span class="badge" style="background:#1e2540;color:#8ba4e8">11h 30m</span>
+      </div>
+    </div>
+    <div style="padding:4px 0">
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Robert / Michael Follow-up Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m <span class="badge badge-rep" style="font-size:9px">FU</span></div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Gene / Michael Follow-up Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m <span class="badge badge-rep" style="font-size:9px">FU</span></div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="color:var(--muted);font-size:11px;padding-top:6px">+10 more meetings</div>
+    </div>
+  </div>
+  </div>
+</div>
+
+<div id="tab-feb-shelby" class="content">
+  <div class="rep-header">
+    <div class="rep-name" style="color:#f08c3e">Shelby Payton</div>
+    <div class="rep-stats">
+      <div class="rep-stat">Feb Total <span>43 meetings</span></div>
+      <div class="rep-stat">Talk time <span>~31h</span></div>
+      <div class="rep-stat">Follow-ups <span>0</span></div>
+      <div class="rep-stat">Source <span style="color:var(--muted)">Google Calendar</span></div>
+    </div>
+  </div>
+  <div class="grid-3">
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Feb 2–6</div>
+      <div class="card-meta">
+        <span class="badge badge-rep">11 meetings</span>
+        <span class="badge" style="background:#1e2540;color:#8ba4e8">8h</span>
+      </div>
+    </div>
+    <div style="padding:4px 0">
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="color:var(--muted);font-size:11px;padding-top:6px">+2 more meetings</div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Feb 9–13</div>
+      <div class="card-meta">
+        <span class="badge badge-rep">10 meetings</span>
+        <span class="badge" style="background:#1e2540;color:#8ba4e8">7h 30m</span>
+      </div>
+    </div>
+    <div style="padding:4px 0">
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Meeting with Shelby from Haven Energy</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Meeting with Shelby from Haven Energy</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="color:var(--muted);font-size:11px;padding-top:6px">+1 more meetings</div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Feb 16–20</div>
+      <div class="card-meta">
+        <span class="badge badge-rep">9 meetings</span>
+        <span class="badge" style="background:#1e2540;color:#8ba4e8">6h 30m</span>
+      </div>
+    </div>
+    <div style="padding:4px 0">
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation: CA solar + battery rebate</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Feb 23–27</div>
+      <div class="card-meta">
+        <span class="badge badge-rep">13 meetings</span>
+        <span class="badge" style="background:#1e2540;color:#8ba4e8">9h</span>
+      </div>
+    </div>
+    <div style="padding:4px 0">
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Haven Energy consultation</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">30m</div>
+    </div>
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+      <div style="color:var(--text)">Sales Meeting</div>
+      <div style="color:var(--muted);font-size:11px;margin-top:2px">1h</div>
+    </div>
+    <div style="color:var(--muted);font-size:11px;padding-top:6px">+4 more meetings</div>
+    </div>
+  </div>
+  </div>
+</div>
+
+
 <script>
 function switchTab(name) {
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
-  const tabs = ['overview','ezra','jonathan','vilma','michael','shelby','darren','insights'];
+  const tabs = ['summary','overview','ezra','jonathan','vilma','michael','shelby','darren','insights','feb-ezra','feb-jonathan','feb-vilma','feb-michael','feb-shelby'];
   const idx = tabs.indexOf(name);
   document.querySelectorAll('.tab')[idx].classList.add('active');
   document.getElementById('tab-' + name).classList.add('active');
